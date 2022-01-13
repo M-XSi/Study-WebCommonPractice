@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>axios ajax</title>
+</head>
+<body>
+<table width="600px" border="0" align="center" cellspacing="0" cellpadding="5">
+    <tr>
+        <td>
+            班级列表
+            <button type="button" onclick="getData()">获取数据</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table  id="mytable" width="100%" border="1" cellspacing="0" cellpadding="5">
+                <thead>
+                <tr>
+                    <th>test</th>
+                    <th>班级id</th>
+                    <th>班级名称</th>
+                    <th>班级编号</th>
+                    <th>班级简介</th>
+                </tr>
+                </thead>
+                <tbody id="mytbody">
+
+                </tbody>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <form id="myform" method="post">
+                <table border="1" width="100%" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>班级id</td>
+                        <td>
+                            <input type="text" id="clazzId">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>班级名称</td>
+                        <td>
+                            <input type="text" id="clazzName">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>班级编号</td>
+                        <td>
+                            <input type="text" id="clazzCode">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>班级简介</td>
+                        <td>
+                            <input type="text" id="clazzDescription">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <button type="button" onclick="save()">保存数据</button>
+        </td>
+    </tr>
+
+</table>
+
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    // 使用axios
+
+    // 配置基本url地址
+    axios.defaults.baseURL='http://localhost:3000';
+    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+    function getData() {
+
+
+        axios.get("/clazz").then(response=> {
+            let data = response.data;
+
+            // 插入表格
+            //把数据写进表格
+            let mytable = document.getElementById("mytable");
+            let mytbody = mytable.getElementsByTagName("tbody")[0]
+            //先删除
+            if (mytbody.rows.length > 0) {
+                arr.forEach(clazz => {
+                    mytbody.deleteRow(0)
+                })
+            }
+            // mytbody.innerHTML='';
+
+            //再添加
+            data.forEach((clazz) => {
+                let newrow = mytbody.insertRow(mytbody.rows.length)
+                console.log("teste");
+                console.log(clazz);
+
+                let cel0 = newrow.insertCell(0)
+                cel0.innerHTML = clazz.id;
+
+                let cel1 = newrow.insertCell(1);
+                cel1.innerHTML = clazz.clazzId;
+
+                let cel2 = newrow.insertCell(2)
+                cel2.innerHTML = clazz.clazzName;
+
+                let cel3 = newrow.insertCell(3)
+                cel3.innerHTML = clazz.clazzCode;
+
+                let cel4 = newrow.insertCell(4)
+                cel4.innerHTML = clazz.clazzDescription;
+
+
+            })
+        })
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组对象 ppt代码</title>
+</head>
+<body>
+<script>
+    // 一位数组定义
+    let weeks =new Array('星期一','星期二','星期三','星期四',
+        '星期五','星期六','星期日');
+    // 二维数组定义
+    let books =new Array(4);
+    for (let i=0;i<books.length;i++){
+        books[i]=new Array(2);
+    }
+    // 初始化
+    books[0][0] = '书名';
+    books[0][1] = 'JavaScript';
+    books[1][0] = '价格';
+    books[1][1] = '80';
+    books[2][0] = '出版社';
+    books[2][1] = '人民邮电';
+    books[3][0] = '出版时间';
+    books[3][1] = '2021-01-01';
+
+
+    // 测试输出数组内容
+    for (let i =0 ; i<books.length ;i++){
+        for (let j=0; j<books[i].length;j++ ){
+            console.log(books[i][j]);
+        }
+    }
+
+
+    let arr1= new Array(3);
+    arr1[0] = "Geogre";
+    arr1[1] = "John";
+    arr1[2] = "Thomas";
+    let arr2 = new Array(3);
+    arr2[0] = "James";
+    arr2[1] = "Adrew";
+    arr2[2] = "Martin";
+    console.log("####test2");
+    console.log(arr1.concat(arr2));
+    // concat 组合两个数组
+
+
+    let arr3 = new Array(3);
+    arr3[0] = "Geogre";
+    arr3[1] = "John";
+    arr3[2] = "Thomas";
+    console.log("test3#"+arr3.join("."));
+    // test3#Geogre.John.Thomas
+
+
+    let arr4 = new Array(3);
+    arr4[0] = "Geogre";
+    arr4[1] = "John";
+    arr4[2] = "Thomas";
+    console.log("###arr4");
+    console.log(arr4.toString());
+    // Geogre,John,Thomas
+    console.log(arr4.pop());
+    // Thomas
+    console.log(arr4.toString());
+    // Geogre,John
+
+
+    let arr5 = new Array(3);
+    arr5[0] = "Geogre";
+    arr5[1] = "John";
+    arr5[2] = "Thomas";
+    console.log("#####arr5");
+    console.log(arr5.push('Kate'));
+    // 4
+    console.log(arr5.toString());
+    // Geogre,John,Thomas,Kate
+
+
+    let arr6 = new Array(3);
+    arr6[0] = "George";
+    arr6[1] = "John";
+    arr6[2] = "Thomas";
+    console.log("######arr6");
+    console.log(arr6.toString());
+    console.log(arr6.shift());
+    console.log(arr6.toString());
+
+
+
+    let arr7 = new Array(3);
+    arr7[0] = "George";
+    arr7[1] = "John";
+    arr7[2] = "Thomas";
+    console.log("#####test7");
+    console.log(arr7.toString());//George,John,Thomas
+    arr7.reverse();
+    console.log(arr7.toString());//Thomas,John,George
+
+    let arr8 = new Array(6);
+    arr8[0] = "George";
+    arr8[1] = "John";
+    arr8[2] = "Thomas";
+    arr8[3] = "James";
+    arr8[4] = "Adrew";
+    arr8[5] = "Martin";
+    console.log("#####ARR8 test-output");
+    console.log("before sort#"+arr8.toString());
+    arr8.sort();
+    console.log("after sort#"+arr8.toString());
+
+    let arr9 = new Array(6)
+    arr9[0] = "George";
+    arr9[1] = "John";
+    arr9[2] = "Thomas";
+    arr9[3] = "James";
+    arr9[4] = "Adrew";
+    arr9[5] = "Martin";
+    console.log("###ARR9 Test");
+    console.log("before change#"+arr9.toString());
+    console.log(arr9.slice(2,4).toString());
+    // 输出数组中的（2，4]
+    console.log("after change#"+arr9.toString());
+
+
+    let arr10 = new Array(6);
+    arr10[0] = "George";
+    arr10[1] = "John";
+    arr10[2] = "Thomas";
+    arr10[3] = "James";
+    arr10[4] = "Adrew";
+    arr10[5] = "Martin";
+    // 添加新元素
+    console.log("####arr10");
+    console.log("before add@"+arr10.toString());
+    arr10.splice(2,0,"William");
+    console.log("after add@"+arr10.toString());
+    // console.log(arr10);
+    // 删除位于index2的元素，并添加一个新的元素来替代被删除的元素
+    arr10.splice(3,1,"william");//等价于替换元素
+    console.log(arr10.toString());
+    // 删除从index2开始的三个元素，并添加一个新的元素来替代被删除的元素
+    arr10.splice(2,3,"William");
+    console.log(arr10.toString());
+    arr10.splice(2,1);
+    console.log(arr10.toString());
+
+
+    </script>
+
+
+
+</body>
+</html>

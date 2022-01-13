@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程信息修改</title>
+    <style>
+        html,body,div{
+            margin: 0;
+            padding: 0;
+        }
+        .div_container{
+            box-sizing: border-box;
+            width: 100%;
+            height: 100vh;
+            margin: 0 auto;
+            border: 1px solid silver;
+        }
+        .div_left{
+            width: 170px;
+            height: 100%;
+            background-color: rgb(109,133,255);
+            float: left;
+        }
+        .div_head{
+            width: calc(100% - 170px);
+            height: 60px;
+            background-color: rgb(191,194,195);
+            float: right;
+        }
+        .div_foot{
+            width: calc(100% - 170px);
+            height: 40px;
+            background-color: rgb(191,194,195);
+            float: right;
+        }
+        .div_content{
+            box-sizing: border-box;
+            width: calc(100% - 170px);
+            height: calc(100% - 60px - 40px);
+            border: 1px solid silver;
+            float: right;
+        }
+        tbody tr:nth-child(even){
+            background-color: rgb(240,240,240);
+        }
+        .mycoursetable tbody tr:nth-child(odd){
+            background-color: rgb(255,255,255);
+        }
+        .mycoursetable tbody tr:nth-child(even){
+            background-color: rgb(240,240,240);
+        }
+    </style>
+</head>
+<body>
+<div class="div_container">
+    <div class="div_left"></div>
+    <div class="div_head"></div>
+    <div class="div_content">
+        <form id="formcourse" method="post">
+            <input type="hidden" id="courseId" name="courseId" >
+            <table  class="" border="0" align="center"
+                    cellspacing=0" cellpadding="5" width="80%">
+                <tr>
+                    <td><br>
+                        课程注册&nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="mycoursetable" id="mycoursetable" width="100%"
+                               border="1"
+                               cellspacing="0"  cellpadding="5">
+                            <tr>
+                                <td align="right"><label for="courseName">课程名称</label></td>
+                                <td colspan="3" >
+                                    <input type="text" id="courseName" name="courseName">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><label for="courseNum">课程编号</label></td>
+                                <td colspan="3">
+                                    <input type="text" id="courseNum" name="courseNum">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><label for="course1">课程结构</label></td>
+                                <td colspan="3">
+                                    <input type="radio" id="course1" name="courseStructure" value="通识必修" checked>通识必修
+                                    <input type="radio" id="course2" name="courseStructure" value="通识选修">通识选修
+                                    <input type="radio" id="course3" name="courseStructure" value="学科基础">学科基础
+                                    <input type="radio" id="course4" name="courseStructure" value="专业必修">专业必修
+                                    <input type="radio" id="course5" name="courseStructure" value="专业选修">专业选修
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><label for="courseHour" >学时:</label></td>
+                                <td>
+                                    <input type="text" required  id="courseHour" name="courseHour">
+                                </td>
+                                <td align="right"><label for="courseGoal" >学分:</label></td>
+                                <td>
+                                    <input type="text" required  id="courseGoal" name="courseGoal">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><label for="courseMajor" >适用专业:</label></td>
+                                <td colspan="3">
+                                    <select id="courseMajor" name="courseMajor">
+                                        <option value="-1">请选择专业</option>
+                                        <option value="软件工程" selected>软件工程</option>
+                                        <option value="计算机与信息技术">计算机与信息技术</option>
+                                        <option value="物联网工程">物联网工程</option>
+                                        <option value="电子商务">电子商务</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><label for="examination">考核方式</label></td>
+                                <td colspan="3">
+                                    <input type="radio" id="examination" name="assMethod" value="考试" checked>考试
+                                    <input type="radio" id="examine" name="assMethod" value="考查">考查
+                                    <input type="radio" id="practice" name="assMethod" value="实践">实践
+                                </td>
+                            </tr>
+                            </tr>
+                            <td align="right"><label for="courseInfo" >课程简介:</label></td>
+                            <td colspan="3">
+                                <textarea  rows="5" cols="105" id="courseInfo" name="courseInfo"></textarea>
+                            </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <button type="button" onclick="save()">保存</button>&nbsp;
+                        <input type="reset" value="重置">&nbsp;
+                        <button type="button" onclick="cancel()">取消</button>&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="div_foot"></div>
+</div>
+<script>
+    let courselist=JSON.parse(sessionStorage.getItem('courselist'));
+    let selectedIndex=sessionStorage.getItem('selectedIndex');
+    let course=courselist[selectedIndex];
+
+    document.getElementById('courseId').value=course.courseId;
+    document.getElementById('courseName').value=course.courseName;
+    document.getElementById('courseNum').value=course.courseNum;
+
+    let objs1 = course.courseStructure;
+    let objs2 = document.getElementsByName('courseStructure');
+    objs2.forEach(item=>{
+        if (item.value==objs1){
+            item.checked=true;
+        }
+    })
+
+    document.getElementById('courseHour').value=course.courseHour;
+    document.getElementById('courseGoal').value=course.courseGoal;
+    document.getElementById('courseMajor').value=course.courseMajor;
+
+    let objs3 = course.assMethod;
+    let objs4 = document.getElementsByName('assMethod');
+    objs4.forEach(item=>{
+        if (item.value==objs3){
+            item.checked=true;
+        }
+    })
+    document.getElementById('courseInfo').value=course.courseInfo;
+    function save(){
+        let coursestrs = document.getElementsByName('courseStructure');
+        //适用课程结构取值
+        let coursestructurevalue=0;
+        coursestrs.forEach(item => {
+            if (item.checked) {
+                coursestructurevalue=item.value;
+            }
+        })
+
+        let major = document.getElementById('courseMajor')
+        let list = major.options;
+        let majorvalue=0;
+        //适用专业取值
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].selected) {
+                majorvalue=list[i].value;
+            }
+        }
+        let assmethods = document.getElementsByName('assMethod');
+        //适用考核方式取值
+        let assmethodvalue=0;
+        assmethods.forEach(item => {
+            if (item.checked) {
+                assmethodvalue=item.value;
+            }
+        })
+        let course={
+            courseId:parseInt((Math.random()*1000).toString()),
+            courseName: document.getElementById('courseName').value,
+            courseNum: document.getElementById('courseNum').value,
+            courseStructure: coursestructurevalue,
+            courseHour: document.getElementById('courseHour').value,
+            courseGoal: document.getElementById('courseGoal').value,
+            courseMajor: majorvalue,
+            assMethod: assmethodvalue,
+            courseInfo: document.getElementById('courseInfo').value
+        }
+        let courselist=JSON.parse(sessionStorage.getItem('courselist'));
+        courselist.splice(selectedIndex,1,course);
+
+        sessionStorage.setItem('courselist',JSON.stringify(courselist));
+
+        location.href='1courselist.html';
+    }
+    function cancel(){
+        location.href='1courselist.html';
+    }
+</script>
+</body>
+</html>

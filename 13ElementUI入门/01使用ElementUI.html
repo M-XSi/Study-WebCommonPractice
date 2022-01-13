@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用elementUI</title>
+<!--  2.引入样式库-->
+<!--    在线样式库-->
+<!--    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">-->
+    <link rel="stylesheet" href="../static/element-ui/index.css">
+
+
+</head>
+<body>
+<!--3.创建容器-->
+<div id="app">
+  <el-button @click="changeVal">打开对话框</el-button>
+  <el-dialog :visible.sync="visible" title="对话框标题">
+    你好
+  </el-dialog>
+
+
+
+
+</div>
+
+<!--1.引人vue库，element ui库-->
+<script src="../static/vue/vue.js"></script>
+  <!--引用在线组件库-->
+<!--<script src="https://unpkg.com/element-ui/lib/index.js"></script>-->
+<script src="../static/element-ui/index.js"></script>
+<script>
+  // 4.创建vue容器
+  const app =new Vue ({
+    el:"#app",
+    data:function(){
+      return {
+        visible:false
+      }
+    },
+    methods:{
+      changeVal(){
+        this.visible=true;
+      }
+    }
+  })
+
+
+
+
+</script>
+</body>
+</html>

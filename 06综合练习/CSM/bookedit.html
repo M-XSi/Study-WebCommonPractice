@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改图书信息</title>
+</head>
+<body>
+
+<form id="formbook" method="post">
+    <input type="hidden" id="bookId" name="bookId" >
+    <table border="0" align="center"
+           cellspacing="0" cellpadding="5" width="500px">
+        <tr>
+            <td>
+                添加图书&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table id="mytable" width="100%"
+                       border="1"
+                       cellspacing="0"  cellpadding="5">
+                    <tr>
+                        <td>名称</td>
+                        <td>
+                            <input type="text" id="bookName" name="bookName">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>价格</td>
+                        <td>
+                            <input type="text" id="bookPrice" name="bookPrice">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>出版社</td>
+                        <td>
+                            <input type="text" id="publisher" name="publisher">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <button type="button" onclick="save()">保存</button>&nbsp;
+                <button type="button" onclick="cancel()">取消</button>&nbsp;
+            </td>
+        </tr>
+
+    </table>
+</form>
+
+<script>
+    //数据回填
+    let booklist = JSON.parse(sessionStorage.getItem('booklist'));
+    let selectedIndex=sessionStorage.getItem('selectedIndex');
+    let book= booklist[selectedIndex];
+
+    document.getElementById('bookName').value=book.bookName;
+    document.getElementById('bookPrice').value=book.bookPrice;
+    document.getElementById('publisher').value=book.publisher;
+    document.getElementById('bookId').value=book.bookId;
+
+    function save(){
+        let book={
+            bookId:parseInt((Math.random()*1000).toString()),
+            bookName:document.getElementById('bookName').value,
+            bookPrice:document.getElementById('bookPrice').value,
+            publisher:document.getElementById('publisher').value
+        }
+        let booklist=JSON.parse(sessionStorage.getItem('booklist'));
+        booklist.splice(selectedIndex,1,book);
+
+        sessionStorage.setItem('book',JSON.stringify(booklist));
+
+        location.href='booklist.html';
+    }
+
+    function cancel(){
+        location.href='booklist.html';
+    }
+
+
+
+</script>
+
+
+</body>
+</html>

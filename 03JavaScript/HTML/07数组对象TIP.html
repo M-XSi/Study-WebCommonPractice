@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组对象</title>
+</head>
+<body>
+
+<script>
+    // 数组定义
+    // let arr1=[];
+    // let arr2=new Array();
+
+    let books=new Array(4);
+    books[0]=new Array(2);
+    books[1]=new Array(2);
+    books[2]=new Array(2);
+    books[3]=new Array(2);
+
+    books[0][0]='书名';
+    books[0][1]='JavaScript';
+    books[1][0]='价格';
+    books[1][1]='80';
+    books[2][0]='出版社';
+    books[2][1]='人名邮电';
+    books[3][0]='出版时间';
+    books[3][1]='2019-01-01';
+
+    // 遍历二维数组
+    console.log("遍历二维数组")
+    console.log(books,length);//长度4
+    console.log(books[0],length);//长度2
+    console.log("########");
+    books.forEach(arr=>{
+        arr.forEach(item =>{
+            console.log(item)}
+        )
+    })
+    console.log("########");
+
+    let arr1=['George','John','THomes'];
+    let arr2 = new Array('James','Andrew','Martin');
+    console.log("TEST#arr1@"+arr1.toString());
+    console.log("TEST#arr2@"+arr2.toString());
+
+    // 数组合并
+    let arr3 =arr1.concat(arr2);
+    console.log("ARR3-output@"+arr3.toString());
+    // 数组元素链接
+    // 把数组所有元素放入一个字符串
+    // 元素通过指定的分隔符进行分隔
+    // 如果不指定分隔符 默认逗号
+    let s1=arr1.join();
+    console.log("默认链接符为逗号@"+s1);
+     s1=arr1.join('_');
+    console.log("链接符为下划线@"+s1);
+
+
+    // pop-删除并返回数组最后一个元素
+    let s2 = arr1.pop();
+    console.log("##s2 测试输出@"+s2);
+    console.log("## after change arr1@"+arr1.toString());
+
+    // 删除并返回数组的第一个元素
+    let s3 = arr1.shift();
+    console.log(s3);
+    console.log(arr1);
+
+    // reverse--颠倒数组中的元素
+    console.log("####reverseTest-arr3@"+arr3.toString());
+    let arr4 = arr3.reverse();
+    console.log("####reversrTest-arr4@"+arr4.toString());
+
+    // sort对数组中的元素进行排序
+    let arr5 = arr3.sort();
+    console.log("###sortTest-arr5@"+arr5.toString());
+
+
+    console.log("###sliceTest-arr3@"+arr3.toString());
+    let arr6 = arr3.slice(2,4);
+    console.log("###aliceTest-arr6@"+arr6.toString());
+
+    // splice
+
+
+
+
+
+
+</script>
+
+<h1>控制台输出 请打开控制台</h1>
+<p>javascript 数组对象练习</p>
+
+</body>
+</html>

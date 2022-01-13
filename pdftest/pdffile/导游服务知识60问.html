@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta charset="UTF-8">
+  <title>导游服务知识60问</title>
+  <link href="../pdf/jquery.touchPDF.css" rel="stylesheet" media="screen" />
+  <style>
+    body , html{
+      background-color: #404040;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div id="myPDF" style="height: 95%; width: 95%; margin: auto;"></div>
+
+
+<script type="text/javascript" src="../pdf/pdf.compatibility.js"></script>
+<script type="text/javascript" src="../pdf/pdf.js"></script>
+<script
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="../pdf/jquery.touchSwipe.js"></script>
+<script type="text/javascript" src="../pdf/jquery.touchPDF.js"></script>
+<script type="text/javascript" src="../pdf/jquery.panzoom.js"></script>
+<script type="text/javascript" src="../pdf/jquery.mousewheel.js"></script>
+
+<script type="text/javascript">
+
+  $(function() {
+    $("#myPDF").pdf( {
+      source: "导游服务知识60问.pdf",
+      // tabs: [
+      //   {title: "第一章", page: 2, color: "orange"},
+      //   {title: "第二章", page: 3, color: "green"},
+      //   {title: "第三章", page: 5, color: "blue"},
+      // ]
+    } );
+  });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>递归</title>
+</head>
+<body>
+<a>输入n：<input type="num" id="input" name="input" style="width:200px"></a>
+<button onclick="fresh()">计算</button>
+
+
+<script>
+    /*
+    一个正数的阶乘（factorial）:
+    是所有小于及等于该数的正整数的积，并且0的阶乘等于1.
+    自然数你的阶乘写作n！
+    计算方法：
+    n!=1*2*3*.....*(n-1)*n
+     */
+    let x=4;
+    function factorial(n) {
+        if(n==1||n==0){
+            return 1;
+        }
+        else{
+            return n*factorial(n-1);
+        }
+    }
+    // x=document.getElementsByName('input');
+    console.log(x+"的阶乘="+factorial(x));
+    function fresh() {
+        x:document.getElementById('input').value;
+        console.log(x);
+        console.log(x);
+        // console.log(x+"的阶乘="+factorial(int(x)));
+    }
+
+
+</script>
+
+</body>
+</html>

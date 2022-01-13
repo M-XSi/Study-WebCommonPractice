@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery ajax</title>
+</head>
+<body>
+
+<table width="600px" border="0" align="center"
+       cellpadding="5" cellspacing="0">
+    <tr>
+        <td>
+            班级列表
+            <button type="button" onclick="getData()">获取数据</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table  id="mytable" width="100%" border="1"
+                    cellspacing="0" cellpadding="5">
+                <thead>
+                <tr>
+                    <th>班级id</th>
+                    <th>班级名称</th>
+                    <th>班级编号</th>
+                    <th>班级简介</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>
+            <form id="myform" method="post">
+                <table border="1" width="100%"
+                       cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>班级id</td>
+                        <td>
+                            <input type="text" id="clazzId">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>班级名称</td>
+                        <td>
+                            <input type="text" id="clazzName">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>班级编码</td>
+                        <td>
+                            <input type="text" id="clazzCode">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>班级简介</td>
+                        <td>
+                            <input type="text" id="clazzDescription">
+                        </td>
+                    </tr>
+
+
+                </table>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <button type="button" onclick="save()">保存数据</button>
+        </td>
+    </tr>
+</table>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    //使用jquery
+    //$ --表示Jquery对象
+
+    getData();
+    function getData(){
+
+        //获得数据
+        $.ajax({         //发送一个请求
+            url:'http://localhost:3000/clazz',
+            method:'get',
+            dataType:'json',
+            success:function (data,status){
+                //把数据往表格里添加
+                //把数据写进表格
+                let mytable=document.getElementById("mytable");
+                let mytbody=mytable.getElementsByTagName("tbody")[0]
+                //先删除
+                mytbody.innerHTML='';
+
+                //再添加
+                data.forEach((clazz)=>{
+                    let newrow=mytbody.insertRow(mytbody.rows.length)
+
+                    let cel0=newrow.insertCell(0)
+                    cel0.innerHTML=clazz.clazzId;
+                    let cel1=newrow.insertCell(1)
+                    cel1.innerHTML=clazz.clazzName;
+                    let cel2=newrow.insertCell(2)
+                    cel2.innerHTML=clazz.clazzCode;
+                    let cel3=newrow.insertCell(3)
+                    cel3.innerHTML=clazz.clazzDescription;
+                })
+            }
+        })
+
+    }
+
+    //保存数据
+    function save(){
+        let clazz={
+            id:Math.ceil(Math.random() * 1000),//ceil函数取整
+            clazzId:$("#clazzId").val(),
+            clazzName:$("#clazzName").val(),
+            clazzCode:$("#clazzCode").val(),
+            clazzDescription:$("#clazzDescription").val()
+        }
+
+        //通过ajax发送数据
+        $.ajax({
+            url:'http://localhost:3000/clazz',
+            method: 'post',
+            body:JSON.stringify(clazz),
+            contentType:'application/json;charset=utf-8',
+            dataType: 'json',
+            success:function (data,status){
+                //把数据更新到表格
+                let mytable=document.getElementById("mytable");
+                let mytbody=mytable.getElementsByTagName("tbody")[0]
+
+                let newrow=mytbody.insertRow(mytbody.rows.length);//插入新行
+
+                let cel0=newrow.insertCell(0)
+                cel0.innerHTML=clazz.clazzId;
+                let cel1=newrow.insertCell(1)
+                cel1.innerHTML=clazz.clazzName;
+                let cel2=newrow.insertCell(2)
+                cel2.innerHTML=clazz.clazzCode;
+                let cel3=newrow.insertCell(3)
+                cel3.innerHTML=clazz.clazzDescription;
+
+                //数据保存成功
+                $("#clazzId").val('');
+                $("#clazzName").val('');
+                $("#clazzCode").val('');
+                $("#clazzDescription").val('');
+            }
+        })
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>类及继承</title>
+</head>
+<body>
+<h1>web前端开发基础 &nbsp;&nbsp;大作业1</h1>
+<ur>
+    <li>父类 ：用户User</li>
+    <ul>
+        <li>属性：姓名。性别。工作岗位</li>
+        <li>行为：吃饭。走。睡觉</li>
+    </ul>
+    <li>子类：学生、教师</li>
+    <br>
+    <li>学生</li>
+    <ul>
+        <li>属性：班级、学号、专业</li>
+        <li>行为：写作业、社团活动</li>
+    </ul>
+    <br>
+    <li>教师</li>
+    <ul>
+        <li>属性：工号</li>
+        <li>行为：上课、备课</li>
+    </ul>
+
+</ur>
+
+<script>
+    //父类 ：用户User
+    // 属性：姓名。性别。工作岗位
+    // 行为：吃饭。走。睡觉
+    class User{
+        constructor(name,sex,job) {
+            this.name=name;
+            this.sex=sex;
+            this.job=job;
+        }
+        eat(){
+            console.log(`${this.name}在吃饭`);
+        }
+        walk(){
+            console.log(`${this.name}在走`);
+        }
+        sleep(){
+            console.log(`${this.name}在睡觉`);
+        }
+        _user(){
+            console.log(`姓名：${this.name}`);
+            console.log(`性别：${this.sex}`);
+            console.log(`工作岗位：${this.job}`);
+        }
+    }
+
+    // 子类：学生、教师
+    // 学生
+    // 属性：班级、学号、专业
+    // 行为：写作业、社团活动
+    class student extends User{
+        // 子类可以使用此构造方法 也可以使用get set 方法
+        constructor(name,sex,job,clazz,sNo,pro) {
+            super(name,sex,job);
+            this.clazz=clazz;
+            this.sNo=sNo;
+            this.pro=pro;
+        }
+        homework(){
+            console.log(`${this.name}在写作业`);
+        }
+        activities(){
+            console.log(`${this.name}在参加社团活动`);
+        }
+        _stu(){
+            console.log("班级："+this.clazz);
+            console.log("学号："+this.sNo);
+            console.log("专业："+this.pro);
+        }
+    }
+
+    // 教师
+    // 属性：工号
+    // 行为：上课、备课
+    class teacher extends User{
+        constructor(name,sex,job,sNo) {
+            super(name,sex,job);
+            this.sNo=sNo;
+        }
+        attendClazz(){
+            console.log(`${this.name}在上课`);
+        }
+        prepareClazz(){
+            console.log(`${this.name}在备课`);
+        }
+        _sNo(){
+            console.log("工号："+this.sNo);
+        }
+    }
+
+    let user1=new student('张三','男','计算机与信息技术学院','软件1904','1852012','软件工程');
+    console.log('对象1的信息');
+    user1._user();
+    user1._stu();
+
+
+    user1.eat();
+    user1.walk();
+    user1.sleep();
+    user1.homework();
+    user1.activities();
+    console.log('==============================================');
+
+    let user2=new teacher('李四','女','沧州交通学院','jd1513');
+    console.log('对象2的信息');
+    user2._user();
+    user2._sNo();
+    user2.eat();
+    user2.walk();
+    user2.sleep();
+    user2.attendClazz();
+    user2.prepareClazz();
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

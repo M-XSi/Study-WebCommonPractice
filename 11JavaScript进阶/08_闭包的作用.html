@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包的作用</title>
+</head>
+<body>
+
+
+<script>
+    // 通过闭包模拟私有方法
+    let makeCounter=function () {
+        let privateCount=0;
+
+        function changeVal(val) {
+            privateCount=privateCount+val;
+        }
+        let counter={
+            // 定义闭包
+            increment:function (){
+                changeVal(1);
+            },
+            decrement:function (){
+                changeVal(-1);
+            },
+            value:function (){
+                return privateCount;
+            }
+        }
+        return counter;
+    }
+    // 使用
+    let counter1=makeCounter();
+    let counter2=makeCounter();
+
+    counter1.increment();
+    counter1.increment();
+
+    console.log("count1.value="+counter1.value());
+    console.log("count2.value="+counter2.value());
+
+
+</script>
+</body>
+</html>

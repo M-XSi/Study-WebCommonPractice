@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-text指令</title>
+</head>
+<body>
+<div id="app">
+    <h1 v-text="content"></h1>
+    <h1 v-text="content">在黄骅</h1>
+<!--    上面这行 输出效果  海滨学院 在黄骅会被替换掉-->
+    <h1>{{content}}在黄骅</h1>
+</div>
+
+
+
+<!--<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>-->
+<script src="../static/vue/vue.js"></script>
+
+<script>
+    const app=new Vue({
+        el:"#app",
+        data:function () {
+            return{
+                content:'海滨学院'
+            }
+
+
+        }
+    })
+</script>
+
+</body>
+</html>

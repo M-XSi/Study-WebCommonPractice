@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-model指令</title>
+</head>
+<body>
+<div id="app">
+    <form>
+        姓名：<input type="text"v-model="student.name">
+        <br>
+        性别：<input type="text"v-model="student.age">
+
+        <br>
+        <button type="button" @click="changeVal">改变student数据</button>
+        <br>
+        {{student.name}}--{{student.age}}
+
+    </form>
+</div>
+<script src="../static/vue/vue.js"></script>
+<script>
+    const app=new Vue({
+        el:"#app",
+        data:function () {
+            return{
+                student:{
+                    name:'',
+                    sex:''
+                }
+            }
+        }
+        ,
+        methods:{
+            changeVal:function () {
+                this.student.name = '李四';
+                this.student.age = '21';
+            }
+        }
+
+    })
+
+
+</script>
+</body>
+</html>

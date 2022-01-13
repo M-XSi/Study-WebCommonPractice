@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rest参数</title>
+</head>
+<body>
+
+<script>
+    //Rest 参数....
+    function sumAll(...args){
+        // 传入参数 会绑定到一个数组agrs；
+        let sum=0;
+        for(let item of args){
+            sum=sum+item;
+        }
+        return sum;
+    }
+
+    console.log("sum(1,2,3,4,5)="+sumAll(1,2,3,4,5));
+    console.log("sum(1,2,3)="+sumAll(1,2,3));
+    console.log("sum(1,2)="+sumAll(1,2));
+
+
+
+    // 固定参数加上余下参数
+    function showName(firstName,lastName,...title){
+        console.log(firstName);
+        console.log(lastName);
+        // console.log(title[1]);
+        for (let item in title){
+            console.log(title[item]);
+        }
+    }
+
+    showName("asf","gdfhd","fdgdf","sdgs","gfdh","vbc","reh","dfbn","dfnbd","asdas");
+
+</script>
+
+</body>
+</html>

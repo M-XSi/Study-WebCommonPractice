@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单标记</title>
+</head>
+<body>
+
+<!--表单发送地址-->
+<form id="frmUser" name="frmUser"
+      action="#" method="get">
+    <!--    表单嵌套划分区域-->
+    <table border="0" width="60%" align="center"
+           cellpadding="10" cellspacing="0">
+        <tr>
+            <td align="cnter">用户注册</td>
+        </tr>
+        <tr>
+            <td>
+                <!--                表单区域  内层表单-->
+                <table border="1" width="100%" align="center"
+                       cellpadding="10" cellspacing="0">
+<!--                    第一行 姓名-->
+                    <tr>
+                        <td align="right"><label for="userName"  ><label for="userName" >姓名:</label></label></td>
+                        <td colspan="3">
+                            <input type="text" id="userName" name="userName" required
+                                   value="曾明晖"  minlength="2" maxlength="5">
+                        </td>
+                    </tr>
+<!--                    第二行-->
+                    <tr>
+                        <td align="right"><label for="sex1" >性别:</label></td>
+                        <td>
+                            <input type="radio" id="sex1" name="sex" value="0" checked><label for="sex1" >男 &nbsp;</label>
+                            <input type="radio" id="sex2" name="sex" value="1"><label for="sex2" >女</label>
+                        </td>
+                        <td align="right"><label for="age">年龄:</label></td>
+                        <td><input type="text" id="age" name ="age"
+                                value="22" ></td>
+                    </tr>
+<!--                    第三行 班级 学号-->
+                    <tr>
+                        <td align="right"><label for="clazz" >班级</label></td>
+                        <td>
+                            <select id="clazz" name="clazz" >
+                                <option value="-1">请选择班级</option>
+                                <option value="rj1901">软件1901</option>
+                                <option value="rj1902">软件1902</option>
+                                <option value="rj1903">软件1903</option>
+                                <option value="rj1904"selected>软件1904</option>
+                                <option value="rj1905">软件1905</option>
+                                <option value="rj1906">软件1906</option>
+                                <option value="rj1907">软件1907</option>
+                                <option value="rj1908">软件1908</option>
+                                <option value="rj1909">软件1909</option>
+                                <option value="rj1910">软件1910</option>
+                            </select>
+                        </td>
+                        <td align="right"><label for="num">学号：</label></td>
+                        <td><input type="text" id="num" name="num"
+                                value="19852012"></td>
+                    </tr>
+<!--                    第四行 邮箱 电话-->
+                    <tr>
+                        <td align="right"><label for="email" >邮箱：</label></td>
+                        <td><input type="text" id="email" name="email"
+                                value="18261871197@163.com" ></td>
+                        <td align="right"><label for="phone" >电话：</label></td>
+                        <td><input type="text" id="phone" name="phone"
+                             value="18261871197"></td>
+                    </tr>
+<!--                    第五行-->
+                    <tr>
+                        <td  align="right"><label for="nativePlace" >籍贯</label></td>
+                        <td colspan="3">
+                            <select id="nativePlace" name="nativePlace" >
+                                <option value="-1">请选择籍贯</option>
+                                <option value="河北" selected>河北</option>
+                                <option value="山西">山西</option>
+                                <option value="辽宁">辽宁</option>
+                                <option value="吉林">吉林</option>
+                                <option value="黑龙江">黑龙江</option>
+                                <option value="江苏" selected>江苏</option>
+                                <option value="浙江">浙江</option>
+                                <option value="安徽">安徽</option>
+                                <option value="福建">福建</option>
+                                <option value="江西">江西</option>
+                                <option value="山东">山东</option>
+                                <option value="河南">河南</option>
+                                <option value="湖北">湖北</option>
+                                <option value="湖南">湖南</option>
+                                <option value="广东">广东</option>
+                                <option value="海南">海南</option>
+                                <option value="四川">四川</option>
+                                <option value="贵州">贵州</option>
+                                <option value="云南">云南</option>
+                                <option value="陕西">陕西</option>
+                                <option value="甘肃">甘肃</option>
+                                <option value="青海">青海</option>
+                                <option value="台湾">台湾</option>
+                                <option value="内蒙古">内蒙古</option>
+                                <option value="广西">广西</option>
+                                <option value="西藏">西藏</option>
+                                <option value="宁夏">宁夏</option>
+                                <option value="新疆">新疆</option>
+                                <option value="北京">北京</option>
+                                <option value="天津">天津</option>
+                                <option value="上海">上海</option>
+                                <option value="重庆">重庆</option>
+                                <option value="香港">香港</option>
+                                <option value="澳门">澳门</option>
+<!--                    第六行 家庭住址-->
+                    <tr>
+                        <td align="right"><label for="address" >家庭住址</label></td>
+                        <td colspan="3" >
+                            <input type="text" id="address" name="address"
+                                      value="江苏省苏州市张家港杨舍镇西湖苑8-206"
+                                   style="width:500px; height:30px;"></input>
+                        </td>
+                    </tr>
+<!--                    第七行 主修课程-->
+                    <tr>
+                        <td align="right"><label for="mainclazz" >主修课程</label></td>
+                        <td colspan="3" >
+                            <textarea id="mainclazz" name="mainclazz"
+                                      row="5"cols="50" >《数据结构》、《UML系统分析与设计》、《计算机网络原理》</textarea>
+                        </td>
+                    </tr>
+<!--                    第八行 社会实践或项目实践-->
+                    <tr>
+                        <td align="right"><label for="experience" >社会实践或项目实践</label></td>
+                        <td colspan="3" >
+                            <textarea id="experience" name="experience"
+                                      row="5"cols="50" >阿爸阿爸</textarea>
+                        </td>
+                    </tr>
+<!--                    第九行  荣誉奖励-->
+                    <tr>
+                        <td align="right"><label for="honour" >荣誉奖励</label></td>
+                        <td colspan="3" >
+                            <textarea id="honour" name="honour"
+                                      row="5"cols="50" >阿爸阿爸阿爸阿爸</textarea>
+                        </td>
+                    </tr>
+<!--                    第十行 技能证书-->
+                    <tr>
+                        <td align="right"><label for="ability" >技能证书</label></td>
+                        <td colspan="3" >
+                            <textarea id="ability" name="ability"
+                                      row="5"cols="50" >阿爸阿爸阿爸阿爸</textarea>
+                        </td>
+                    </tr>
+<!--                    第十一行 自我评价-->
+                    <tr>
+                        <td align="right"><label for="selfAssessment" >自我评价</label></td>
+                        <td colspan="3" >
+                            <textarea id="selfAssessment" name="selfAssessment"
+                                      row="5"cols="50" >阿爸阿爸阿爸阿爸</textarea>
+                        </td>
+                    </tr>
+                </table>
+                <!--                -->
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input type="button" value="注册" onclick="location.href='userlist.html'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="reset" value="重置">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" value="取消">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程信息</title>
+    <link href="../CSS/publicCSS.css" rel="stylesheet">
+    <link href="../CSS/infoCSS.css" rel="stylesheet">
+</head>
+<body>
+<div class="div_contaitner">
+    <div class="div_left">
+<!--        左侧导航-->
+        <img class="position1" src="../media/1634909389431-ckt-抠图.png" width="100%">
+    </div>
+    <div class="div_head" align="center">
+<!--        头部-->
+        <p class="fontTitle1" style="height:80px" id="name">《Web程序设计基础》课程简介</p>
+
+    </div>
+    <div class="div_content"  align="center">
+<!--        内容-->
+        <div class="divT1" align="left">
+            <br>
+<!--            <p class="fontTitle1" style="height:80px" id="name">《Web程序设计基础》课程简介</p>-->
+            <p class="Content1" id="clazzNo">课程编号 ：aa</p>
+            <p class="Content1" id="clazzType">课程结构 ：aa</p>
+            <p class="Content1" id="clazzTimeGrade">学分/学时 ：aa</p>
+            <p class="Content1" id="clazzAssessment">考试方式 ：aaa</p>
+            <p class="Content1" id="clazzSubject">适用专业 ：软件工程</p>
+            <p class="Content1" id="clazzDescribeTitle">内容简介 :</p>
+            <p class="Content2" id="clazzDescribe">《Web程序设计基础》是软件工程专业的一个专业课程，通过对Web前端三大主流开发技术的学习和
+                研究，让学生理解和掌握HTML、CSS、JavaScript的基础语法，掌握常用的Web页面布局技术，理解并
+                熟练应用JavaScript常用的对象的属性与方法，熟练地使用DOM技术编写页面交互的客户端程序，通过
+                项目实践，培养学生开发和设计Web站点的基本操作技能和工作岗位适应能力。</p>
+            <br>
+            <p class="Content1" id="">
+                <button type="button" class="fontButton1" id="revert" onclick="location.href='courseList.html'">&nbsp;返回&nbsp;</button>
+            </p>
+
+        </div>
+
+
+
+    </div>
+    <div class="div_footer" align="center">
+<!--        页脚-->
+        @沧州交通学院-计算机与信息技术学院-软件工程1904班-曾明晖-19852012
+
+    </div>
+</div>
+<script>
+    console.log("@courseInfo");
+    let clazzList=JSON.parse(sessionStorage.getItem('clazzList'));
+    let selectedIndex=sessionStorage.getItem('selectedIndex');
+    let clazz = clazzList[selectedIndex];
+    console.log("clazz数组测试输出");
+    console.log(clazz);
+    document.getElementById('name').innerHTML="《"+clazz.clazzName+"》课程简介";
+    document.getElementById('clazzNo').innerHTML="课程编号："+clazz.clazzNo;
+    document.getElementById('clazzType').innerHTML="课程结构："+clazz.clazzType;
+    document.getElementById('clazzTimeGrade').innerHTML="学分/学时："+clazz.clazzTime+"学时/"+clazz.clazzGrade+"学分";
+    document.getElementById('clazzAssessment').innerHTML="考试方式："+clazz.clazzAssessment;
+    document.getElementById('clazzSubject').innerHTML="适用专业："+clazz.clazzSubject;
+    document.getElementById('clazzDescribe').innerHTML="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+clazz.clazzDescribe+"<br>"+"<br>";
+
+
+</script>
+
+</body>
+</html>

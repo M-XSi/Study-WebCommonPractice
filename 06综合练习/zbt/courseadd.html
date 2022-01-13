@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程注册页面</title>
+    <link href="../course_css/coursestyle.css" type="text/css" rel="stylesheet">
+    <style>
+        tr, td {
+            text-align: left;
+            padding: 0;
+        }
+
+        .t1 {
+            text-align: right;
+            padding: 0;
+        }
+
+        .t2 {
+            text-align: center;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="div_container">
+    <div class="div_header">这里是头部</div>
+    <div class="div_left">这里是导航</div>
+    <div class="div_content">
+        <form id="frmcourse" method="post">
+            <table border="1"
+                   cellspacing="0"
+                   cellpadding="5"
+                   width="500px">
+                <caption align="center">
+                    注册课程&nbsp;
+                </caption>
+
+                <tr>
+                    <td class="t1">课程名称：</td>
+                    <td colspan="3">
+                        <input type="text" id="courseName">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="t1">课程编号：</td>
+                    <td colspan="3">
+                        <input type="text" id="courseNum">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="t1">课程结构：</td>
+                    <td colspan="3">
+                        <input type="radio" id="courseSel1" name="courseSel" value="通识必修" checked>通识必修
+                        <input type="radio" id="courseSel2" name="courseSel" value="通识选修">通识选修
+                        <input type="radio" id="courseSel3" name="courseSel" value="学科基础">学科基础
+                        <input type="radio" id="courseSel4" name="courseSel" value="专业必修">专业必修
+                        <input type="radio" id="courseSel5" name="courseSel" value="专业选修">专业选修
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="t1">学时：</td>
+                    <td>
+                        <input type="text" id="courseTime">
+                    </td>
+
+                    <td class="t1">学分：</td>
+                    <td>
+                        <input type="text" id="courseGragde">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="t1">适用专业：</td>
+                    <td colspan="3">
+                        <select id="coursemajor" name="coursemajor">
+                            <option value="你没选啊！！！" selected>请选择专业</option>
+                            <option value="软件工程">软件工程</option>
+                            <option value="能源">能源</option>
+                            <option value="物联网">物联网</option>
+                            <option value="物联网">物联网</option>
+                            <option value="计算机科学与技术">计算机科学与技术</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="t1">考核方式：</td>
+                    <td colspan="3">
+                        <input type="radio" id="test1" name="test" value="考试" checked>考试
+                        <input type="radio" id="test2" name="test" value="考察">考察
+                        <input type="radio" id="test3" name="test" value="实践">实践
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="t1">课程简介：</td>
+                    <td colspan="3">
+                        <textarea id="courseifo" rows="5" cols="99">
+
+                        </textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="t2" colspan="4">
+                        <button type="button" onclick="save()"><a href="courselist.html">保存</a></button>&nbsp;
+                        <input type="reset" value="重置">
+                        <button type="button" onclick="cancel()">取消</button>&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="div_foot">这是页脚</div>
+</div>
+
+<script>
+    function save() {
+        let Radio = document.getElementsByName('courseSel');
+        let RadioValue = 0;
+        Radio.forEach(item => {
+            if (item.checked) {
+                RadioValue = item.value;
+            }
+        })
+
+        let Select = document.getElementById('coursemajor')
+        let list = Select.options;
+        for(let i = 0; i<list.length; i++){
+            if(list[i].selected){
+                SelectedValue=list[i].value;
+            }
+        }
+
+        let Radio2 = document.getElementsByName('test');
+        let RadioValue2 = 0;
+            Radio2.forEach(item => {
+                if (item.checked) {
+                    RadioValue2 = item.value;
+                }
+            })
+
+        let course = {
+            courseId: parseInt((Math.random() * 1000).toString()),
+            courseName: document.getElementById('courseName').value,
+            courseNum: document.getElementById('courseNum').value,
+            courseSel: RadioValue,
+            courseTime: document.getElementById('courseTime').value,
+            courseGragde: document.getElementById('courseGragde').value,
+            coursemajor: SelectedValue,
+            test: RadioValue2
+        }
+        let courselist = JSON.parse(sessionStorage.getItem('courselist'));
+        courselist.push(course);
+
+        sessionStorage.setItem('courselist', JSON.stringify(courselist));
+
+        location.href = 'courselist.html';
+    }
+
+    function cancel() {
+        location.href = 'courselist.html';
+    }
+</script>
+</body>
+</html>

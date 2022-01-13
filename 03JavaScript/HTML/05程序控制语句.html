@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>程序控制语句</title>
+</head>
+<body>
+<script>
+    // 简单for循环
+
+    // var 定义的变量默认全局变量 能不使用var定义就不用var定义 尽量使用let 定义局部变量
+    let sum=0;
+    for(let i=0; i<10;i++){
+        sum=sum+i;
+    } align="right"
+    console.log(sum);
+
+
+    // for in 语法
+    console.log("for in 语法");
+    let arr=[12,'abc',23,'asd','bcd'];
+    for(let index in arr){
+        console.log(index);
+        console.log(arr[index]);
+    }
+
+    // for in 遍历javascrip 对象
+    console.log("for in 遍历javaScript 对象");
+    let student= {
+        name:'张三',
+        sex:'男',
+        age : 20
+    }
+    for(let key in student){
+        console.log(key);
+        console.log(student[key]);
+    }
+
+
+      // for of 遍历数组
+    console.log("for of 遍历数组");
+     for (let item of arr){
+         console.log(item);
+     }
+
+
+     // forEach遍历数组
+    console.log("forEach 遍历数组");
+    let clazz=['1901','1902','1903','1904'];
+     // 通过数组的foreach方法，给这个foreach方法传入一个箭头函数，处理每一个数组元素
+    clazz.forEach(item=>{
+        console.log(item);
+    })
+
+
+
+    // While 循环
+    console.log("while循环");
+    let j=0;
+    sum=0;
+    while (j<9){
+        sum=sum+j;
+        j++;
+    }
+    console.log( "sum="+sum);
+
+
+     // do While 循环
+    console.log("doWhile循环");
+    sum=0;
+    j=0;
+    do{
+        sum=sum+j;
+        j++;
+    }while (j<9)
+    console.log("sum="+sum);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

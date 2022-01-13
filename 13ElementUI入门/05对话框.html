@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用ElementUI</title>
+    <!--2引入样式库-->
+    <!--<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">-->
+    <link rel="stylesheet" href="../static/element-ui/index.css">
+</head>
+<body>
+
+<!--3创建容器-->
+<div id="app">
+    <el-button @click="changeVal">打开对话框</el-button>
+    <el-dialog :visible.sync="visible"
+               width="50%"
+               :modal-append-to-body="false"
+               :close-on-click-modal="false"
+               :close-on-press-escape="false"
+               title="添加学生">
+        <el-form rel="myform" v-model="student" label-width="120px">
+            <el-form-item label="姓名" required>
+                <el-form-item prop="name">
+                    <el-input type="text" v-model="student.name"></el-input>
+                </el-form-item>
+            </el-form-item>
+
+            <el-form-item label="年龄">
+                <el-form-item prop="age">
+                    <el-input type="text" v-model="student.age"></el-input>
+                </el-form-item>
+            </el-form-item>
+
+            <el-form-item prop="age">
+                <el-button type="primary" plain size="medium" @click="onSave">保存</el-button>
+                <el-button type="info" plain size="medium" @click="visible=false">取消</el-button>
+            </el-form-item>
+
+        </el-form>
+    </el-dialog>
+</div>
+
+<!--1引入vue库，element ui库-->
+<script src="../static/vue/vue.js"></script>
+<!--<script src="https://unpkg.com/element-ui/lib/index.js"></script>-->
+<script src="../static/element-ui/index.js"></script>
+
+<script>
+    //4 创建vue实例
+    const app=new Vue({
+        el:'#app',
+        data:function () {
+            return{
+                visible:false,
+                student:{
+                    name:'',
+                    age:''
+                }
+            }
+        },
+        methods:{
+            changeVal(){
+                //清空
+                this.student={
+                    name:'',
+                    age:''
+                }
+                //打开对话框
+                this.visible=true;
+            },
+            onSave(){
+                console.log(this.student)
+
+                //关闭对话框
+                this.visible=false;
+            }
+        }
+    })
+</script>
+</body>
+</html>

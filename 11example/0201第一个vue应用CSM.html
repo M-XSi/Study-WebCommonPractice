@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第一个vue应用</title>
+</head>
+<body>
+
+<!--定义一个容器，挂载vue实例-->
+<div id="app">
+    {{msg}}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<script>
+    //定义vue实例
+    //vue的选项式api（option api）：通过传递一个可选参数给vue实例
+    const app=new Vue({
+        el:"#app",
+        data:function () {
+            return{
+                msg:"第一个vue应用",
+                myname:"张三",
+                clazzList:[
+                    {
+                        clazzId:'',
+                        clazzName:'',
+                    },
+                    {
+
+                    }
+                ]
+            }
+        }
+    });
+
+
+
+</script>
+
+</body>
+</html>

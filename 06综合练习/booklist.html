@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书列表</title>
+</head>
+<body>
+
+<table border="0" align="center" cellspacing="0" cellpadding="5"
+          width="500px">
+  <tr>
+    <td>
+      图书列表&nbsp;
+      <button type="button" onclick="bookadd()">添加</button>
+    </td>
+  </tr>
+  <tr>
+    <td>
+
+      <table id="mytable" width="100%" cellpadding="5" cellspacing="0"  border="1">
+        <tr>
+          <td>序号</td>
+          <td>名称</td>
+          <td>价格</td>
+          <td>出版社</td>
+          <td>操作</td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+
+</table>
+
+<script>
+  console.log("test");
+  initTable();
+
+    // 初始化表格
+  /*
+  1.判断booklist是否存在
+  ->不存在> 创建模拟数据
+   */
+  function initTable(){
+    let booklist=sessionStorage.getItem('booklist');
+    // 第一次运行判断booklist是否存在
+    if(!booklist){
+      // 创建模拟数据
+      let books=[{
+        bookId:1001,
+        bookName:'web程序设计基础',
+        bookprice:90.5,
+        publisher:'海滨学院出版社'
+      }]
+      // 新建一个存储
+      sessionStorage.setItem('booklist',JSON.stringify(books))
+    }
+    // else{
+      booklist = JSON.parse(sessionStorage.getItem('booklist'));
+
+    // // 再取一次，转换成数组对象
+    // booklist=JSON.parse(sessionStorage.getItem('booklist'));
+
+    //先往表格写数据
+    let mytable = document.getElementById('mytable');
+    // 先清空表格
+    while(mytable.rows.length>1){
+      mytable.deleteRow(1);
+    }
+    booklist.forEach(book=>{
+      // 开始插入行
+      let rownum = mytable.rows.length;
+      let newrow = mytable.insertRow(rownum);
+      let cel0=newrow.insertCell(0);
+      cel0.innerHTML=rownum;
+
+      let  cel1=newrow.insertCell(1);
+      cel1.innerHTML=book.bookName;
+
+      let cel2=newrow.insertCell(2);
+      cel2.innerHTML=book.bookprice;
+
+      let cel3 = newrow.insertCell(3);
+      cel3.innerHTML=book.publisher;
+
+      let cel4 = newrow.insertCell(4);
+      cel4.innerHTML=
+              '<button type="button" onclick="bookedit('+rownum+')">修改</button>&nbsp;'+
+              '<button type="button" onclick="bookdel('+rownum+')">删除</button>';
+    })
+  }
+
+  //添加按钮
+  function bookadd(){
+    console.log("@bookadd");
+    location.href='bookadd.html';
+  }
+  //修改按钮
+  function bookedit(index){
+    console.log("@bookedit");
+    // 选中要修改的图书
+    sessionStorage.setItem('selectedIndex',index-1);
+    location.href='bookedit.html';
+  }
+  //删除按钮
+  function bookdel(index){
+    console.log("@bookdel");
+    let booklist=JSON.parse(sessionStorage.getItem('booklist'));
+    // 删除数组数据
+    booklist.splice(index-1,1);
+    sessionStorage.setItem('booklist',JSON.stringify(booklist));
+    // 调用初始化重新渲染表格
+    initTable();
+
+  }
+
+
+
+
+</script>
+
+
+</body>
+</html>

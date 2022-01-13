@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type ="button" value="执行js代码"  onclick="myfun()" >
+<script>
+  // script定义出来的范围就是JavaScript的执行环境
+  let a=1;
+
+  function myfun(){
+    let b=1;
+    let c=b+2;
+
+    console.log("日志输出");
+    alert("第一个JS页面");
+  }
+  myfun();
+
+</script>
+
+</body>
+</html>

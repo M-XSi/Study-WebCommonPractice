@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型及继承</title>
+</head>
+<body>
+<script>
+    // 构造函数
+    function Person(name,age,job){
+        this.name=name;
+        this.age=age;
+        this.job=job;
+    }
+
+    // 创建实例
+    let person1 =new Person("张三",20,"班长");
+    let person2 =new Person("李四",19,"学委");
+
+
+    // 构造函数的原理
+    console.log("Person构造函数可以通过prototype属性得到原型对象：")
+    let personPrototype=Person.prototype;
+    console.log(personPrototype);
+
+
+    let P=personPrototype.constructor;
+    console.log("原型对象可以通过constructor属性得到构造函数：");
+    console.log(P);
+
+
+    let personPrototype2=person1.__proto__;
+    console.log("person1实例可以通过隐藏属性[[Prototype]]获得创建自己的构造函数的原型");
+    console.log(personPrototype2);
+
+    console.log("person2：");
+    console.log(person2.__proto__);
+
+
+    // 父类
+
+    function SuperType(){
+        this.name="只是父类属性";
+        this.action=function(){
+            return "这是父类的方法";
+        }
+    }
+
+    // 子类
+
+    function SubType(){
+        this.subname="这是子类属性";
+        this.subaction=function(){
+            return "这是子类的方法";
+        }
+    }
+
+    // 实现继承之前
+
+    console.log("实现继承之前：");
+    let sub1=new SubType();
+    console.log(sub1.subname);
+    console.log(sub1.subaction());
+    console.log(sub1.name);
+
+
+    // 实现继承
+    // 改变子类的原型属性prototype，使之指向父类的实例
+    SubType.prototype=new SubType();
+
+    // 继承后
+    let sub2=new SubType();
+    console.log("继承后：");
+    console.log(sub2.subname);
+    console.log(sub2.name);
+
+    // 原型式
+    let superman={
+        fly:function (){
+            return '我能飞';
+        }
+    }
+
+
+    // 通过修改person1 的影藏属性--proto--,指向superman 对象
+    person1.__proto__=superman;
+
+    // 继承后
+    console.log(person1.fly());cxc
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

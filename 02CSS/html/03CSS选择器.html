@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择器</title>
+<!--    三种样式 内联、外联、   -->
+    <style>
+        /*1、标记（标签、元素）选择器*/
+        div{
+            width: 400px;
+            heigh: 300px;
+            border: 1px solid red;
+            background-color: yellow;
+        }
+
+        /*2、类选择器*/
+        .first{
+            color: blue;
+            /*三种颜色选择 内置，RGB， 十六进制*/
+        }
+        .third{
+            color: red;
+            background-color: aqua;
+        }
+        .second{
+            text-decoration-line: line-through;
+        }
+
+        /*3、id选择器*/
+        #s1{
+            color:blue;
+            border:1px solid black;
+        }
+        #s2{
+            colour:red;
+        }
+
+        /*4、后代选择器*/
+        /*p标签中的span标签中的span标签*/
+        p span span{
+            background-color:  yellow;
+            color: blue;
+        }
+
+        /*5、伪类选择器*/
+        /*伪类 鼠标移上去后变化*/
+        a:hover{
+            color: aqua;
+            background-color: blue;
+            font-size: xxx-large;
+        }
+        tr:nth-child(odd){
+            background-color: lightgray;
+        }
+        /*odd定义所有表格的奇数行*/
+        tr:nth-child(even){
+            background-color: white;
+        }
+        /*even定义所有表格偶数行*/
+
+
+        /*6、通配符选择器*/
+        *{
+            /*border:10px solid red;*/
+            margin: 0;
+            padding:0;
+
+            /*定义整个页面的内外页边距*/
+
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+<div>111111111</div>
+<div>2222222222</div>
+
+<p class="first second third">aaaaaaaa</p>
+<p>bbbbbbbbbbbbb</p>
+<br>
+
+
+<span id="s1">第一个span标签</span><br>
+<span id="s2">第二个span标签</span>
+
+
+<p>这是p标签
+    <span>
+        外部span内容
+        <span>内部span内容</span>
+    </span>
+</p>
+<br>
+
+<span>
+    第二个外部span
+    <span>第二个内部span</span>
+</span>
+<br>
+
+<a href="01第一个CSS应用.html">第一个css文件</a>
+<br>
+
+
+<table width="600" border="1" align="center"
+       cellpadding="10" cellspacing="0">
+    <tr>
+        <td>11111111</td>
+        <td>aaaaaaa</td>
+    </tr>
+    <tr>
+        <td>222222</td>
+        <td>bbbbbbbbbb</td>
+    </tr>
+    <tr>
+        <td>333333333</td>
+        <td>ccccccccccc</td>
+    </tr>
+    <tr>
+        <td>4444444444</td>
+        <td>ccccccc</td>
+    </tr>
+</table>
+<br>
+
+
+
+</body>
+</html>

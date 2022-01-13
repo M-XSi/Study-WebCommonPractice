@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>spread语法</title>
+<!--    参数展开语法-->
+</head>
+<body>
+
+<script>
+  function maxNumber() {
+      // 使用Math.max()求
+      // let arr=[1,3,2,8,5,6,9];
+      // Math.max(arr[0],arr[1],arr[2]);
+
+      // 使用spread语法，把数组自动展开，得到多个参数
+      let max=Math.max(...arr);
+      console.log("max="+max);
+      return max
+
+  }
+  let arr=[1,3,2,18,5,6,9];
+  maxNumber(arr);
+
+</script>
+</body>
+</html>

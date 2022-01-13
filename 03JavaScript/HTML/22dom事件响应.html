@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件响应</title>
+</head>
+<body>
+<button id ="btnAdd" type="button" onclick="f1()" >事件</button>
+
+<script>
+    function f1(){
+        console.log("a");
+    }
+    function f2(){
+        console.log("b");
+    }
+
+    // 事件侦听
+    let btnAdd=document.getElementById('btnAdd');
+    btnAdd.addEventListener('mouseover',function (){
+        console.log("事件监听-mouseover");
+    },false)
+
+
+</script>
+
+</body>
+</html>

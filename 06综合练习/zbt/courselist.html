@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程列表页面</title>
+    <link href="../course_css/coursestyle.css" rel="stylesheet">
+</head>
+<body>
+<div class=div_container>
+    <div class="div_header">这里是头部</div>
+    <div class="div_left">这里是导航</div>
+    <div class="div_content">
+        <table id="mytable" border="1" cellspacing="0" cellpadding="5">
+
+            <caption>
+                课程列表&nbsp;<button type="button" onclick="register()">注册</button>
+            </caption>
+
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>课程名称</th>
+                    <th>课程编号</th>
+                    <th>课程结构</th>
+                    <th>学时/学分</th>
+                    <th>适用专业</th>
+                    <th>考核方式</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="div_foot">这是页脚</div>
+</div>
+
+<script>
+    start();
+    function start() {
+        let courselist = sessionStorage.getItem('courselist');
+        if (!courselist) {
+            // let con = confirm("你没有数据，点击取消直接添加");
+            // if (con)
+            //     location.href = 'courseAdd.html';
+            courselist = [{
+                courseId: 1001,
+                courseName: 'Web程序设计',
+                courseNum: 'JX02L1247',
+                courseSel: '必修',
+                courseTime: "48",
+                courseGragde:"3",
+                coursemajor: '软件工程',
+                test: '考试'
+            }]
+            sessionStorage.setItem('courselist',
+                JSON.stringify(courselist));
+        } else {
+            courselist = JSON.parse(sessionStorage.getItem('courselist'));
+        }
+        courselist = JSON.parse(sessionStorage.getItem('courselist'));
+        let mytable = document.getElementById('mytable');
+        while (mytable.rows.length > 1) {
+            mytable.deleteRow(1);
+        }
+        courselist.forEach(course => {
+            //开始插入行
+            let rownum = mytable.rows.length;
+            let newrow = mytable.insertRow(rownum);
+            let cel0 = newrow.insertCell(0);
+            cel0.innerHTML = rownum;
+
+            let cel1 = newrow.insertCell(1);
+            cel1.innerHTML = course.courseName;
+
+            let cel2 = newrow.insertCell(2);
+            cel2.innerHTML = course.courseNum;
+
+            let cel3 = newrow.insertCell(3);
+            cel3.innerHTML = course.courseSel;
+
+            let cel4 = newrow.insertCell(4);
+            cel4.innerHTML = course.courseTime + '/' + course.courseGragde;
+
+            let cel5 = newrow.insertCell(5);
+            cel5.innerHTML = course.coursemajor;
+
+            let cel6 = newrow.insertCell(6);
+            cel6.innerHTML = course.test;
+
+            let cel7 = newrow.insertCell(7);
+            cel7.innerHTML = '<button type="button" onclick="courseedit(' + rownum + ')">修改</button>&nbsp;' + '<button type="button" onclick="coursedel(' + rownum + ')">删除</button>';
+        })
+
+    }
+
+    <!--        注册按钮-->
+    function register() {
+        location.href = 'courseadd.html';
+    }
+
+    //    修改按钮
+    function courseedit(index) {
+        sessionStorage.setItem('selectedIndex', index - 1);
+        location.href = 'courseedit.html';
+    }
+
+    //    删除按钮
+    function coursedel(index) {
+        let courselist = JSON.parse(sessionStorage.getItem('courselist'));
+        //删除数组
+        courselist.splice(index - 1, 1);
+
+        sessionStorage.setItem('courselist', JSON.stringify(courselist));
+        //    重新渲染表格
+        start();
+    }
+
+</script>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通过query查找元素</title>
+</head>
+<body>
+
+
+<div id="div1" class="mystyle">
+  <p>111111111111</p>
+  <p>222222222222</p>
+  <p>333333333333333</p>
+</div>
+<p>4444444444444</p>
+
+<div>
+    第二个div
+</div>
+
+<button type="button" onclick="f1()">查找元素</button>
+<script>
+    function f1(){
+        // let div1 = document.querySelector('div');
+        // let div1 = document.querySelector('#div1');
+        let div1 = document.querySelector('.mystyle');
+        let objs = div1.querySelectorAll('p');
+        for (let obj of objs){
+            console.log(obj.innerHTML);
+        }
+    }
+</script>
+
+
+
+
+</body>
+</html>

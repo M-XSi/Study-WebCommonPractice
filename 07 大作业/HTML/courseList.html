@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程列表</title>
+    <link href="../CSS/publicCSS.css" rel="stylesheet">
+    <link href="../CSS/listCSS.css" rel="stylesheet">
+</head>
+<body>
+<div class="div_contaitner">
+    <div class="div_left">
+<!--        左侧导航-->
+        <img class="position1" src="../media/1634909389431-ckt-抠图.png" width="100%">
+    </div>
+    <div class="div_head" align="center" >
+<!--        头部-->
+        课程列表&nbsp;&nbsp;<button class="fontButton1" type="button" id="new" onclick="clazzAdd()">&nbsp;注册&nbsp;</button>
+    </div>
+    <div class="div_content" align="center">
+<!--        内容-->
+        <br>
+        <table class="tableMain">
+
+            <tr>
+                <td>
+<!--                    表格主体-->
+                    <table id="myTable"  width="100%" border="1" cellpadding="5" cellspacing="0">
+<!--                           border="1"-->
+                        <tr>
+                            <td class="td1">序号</td>
+                            <td class="td2">课程名称</td>
+                            <td class="td3">课程编号</td>
+                            <td class="td4">课程结构</td>
+                            <td class="td5">学时/学分</td>
+                            <td class="td6">适用专业</td>
+                            <td class="td7">考核方式</td>
+                            <td class="td8">操作</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <div>
+            <ul>
+                <li>
+
+                </li>
+            </ul>
+        </div>
+        <div>
+
+        </div>
+
+    </div>
+    <div class="div_footer" align="center">
+<!--        页脚-->
+        @沧州交通学院-计算机与信息技术学院-软件工程1904班-曾明晖-19852012
+
+    </div>
+</div>
+
+<script>
+    initTable();
+    // 创建一个div
+    var layer=document.createElement("div");
+    // 设置div的id值
+    layer.id="layer";
+    // 上面按钮点击事件
+
+    function initTable(){
+        console.log("进入courseList");
+
+        let clazzList=sessionStorage.getItem('clazzList');
+        // 第一次运行判断clazzList是否存在
+        if(!clazzList){
+            console.log("clazzList为空" );
+            // 创建模拟数据
+            clazzList=[
+                {
+                    clazzId:1001,
+                    clazzName:'web程序设计基础',
+                    clazzNo:'JX02L1146',
+                    clazzType:'专业必修',
+                    clazzTime: 48,
+                    clazzGrade:3,
+                    clazzSubject:'软件工程',
+                    clazzAssessment:'考试',
+                    clazzDescribe:'《Web程序设计基础》是软件工程专业的一个专业课程，通过对Web前端三大主流' +
+                        '开发技术的学习和研究，让学生理解和掌握HTML、CSS、JavaScript的基础语法，掌握常用的' +
+                        'Web页面布局技术，理解并熟练应用JavaScript常用的对象的属性与方法，熟练地使用DOM技' +
+                        '术编写页面交互的客户端程序，通过项目实践，培养学生开发和设计Web站点的基本操作技能和' +
+                        '工作岗位适应能力。'
+                },
+                {
+                    clazzId:1002,
+                    clazzName:'Android开发基础',
+                    clazzNo:'JX02L1249',
+                    clazzType:'专业必修',
+                    clazzTime: 48,
+                    clazzGrade:3,
+                    clazzSubject:'软件工程',
+                    clazzAssessment:'考查',
+                    clazzDescribe:'《Android开发基础》是软件工程专业很重要的一个专业必修课程，是基于' +
+                        'Android平台进行软件开发的基础课程。本课程主要介绍 Android基础知识、UI 界面、' +
+                        '数据存储、sQLite 数据库、Android四大组件、网络编程等。'
+                },
+                {
+                    clazzId:1003,
+                    clazzName:'计算机组成原理',
+                    clazzNo:'JX00L1102',
+                    clazzType:'专业必修',
+                    clazzTime: 64,
+                    clazzGrade:4,
+                    clazzSubject:'软件工程',
+                    clazzAssessment:'考试',
+                    clazzDescribe:'《计算机组成原理》是计算机科学与工程技术所有专业的一门核心课程。从课程' +
+                        '地位来讲,它在先导课和后续课之间起着承上启下的作用。教材具有合理的知识结构，学生必须' +
+                        '掌握深厚的硬件基础知识和整机概念。通过学习本课程，培养学生的硬件分析、设计和调试能力，' +
+                        '为以后学习其它不同计算机专业课程打下一个良好的基础。'
+                },
+                {
+                    clazzId:1004,
+                    clazzName:'专业英语（软件）',
+                    clazzNo:'JX02 L1143',
+                    clazzType:'专业必修',
+                    clazzTime: 32,
+                    clazzGrade:2,
+                    clazzSubject:'软件工程',
+                    clazzAssessment:'考试',
+                    clazzDescribe:'《专业英语（软件工程）》是一门软件工程专业的学科课程，限选。该课程旨在' +
+                        '培养和提高本专业学生阅读和笔译专业英语文献资料的能力，并通过课堂应用和交流，提高学生' +
+                        '专业英语口语的沟通能力，逐步掌握如何了解本专业各领域国内外发展动向及如何进行国际学术' +
+                        '交流的技巧。该课程通过选取计算机硬件、特别是计算机软件相关的经典及前沿的英文原版文章以' +
+                        '及听力材料，系统介绍经常出现于科技书刊和专业文献中的各种语法现象，扩大专业词汇量，掌握' +
+                        '计算机及软件开发等方面的常用英语表达方式，并且对计算机专业领域的新技术、新研究方向有更多的了解。'
+                },
+                {
+                    clazzId:1005,
+                    clazzName:'计算机类专业基础',
+                    clazzNo:'JX00L1101',
+                    clazzType:'专业必修',
+                    clazzTime: 56,
+                    clazzGrade:3.5,
+                    clazzSubject:'软件工程',
+                    clazzAssessment:'考试',
+                    clazzDescribe:'《计算机类专业基础》是软件工程专业的一个专业课程，主要知识点包括计算机的' +
+                        '工作原理、计算机的发展简史、计算机系统的硬件结构及软件结构、数据在计算机中的表示、微型' +
+                        '计算机的硬件配置与软件配置、计算科学的学科分类和未来发展方向。'
+                }
+            ]
+            // 新建一个存储
+            sessionStorage.setItem('clazzList',JSON.stringify(clazzList));
+        }else{
+            clazzList= JSON.parse(sessionStorage.getItem('clazzList'));
+        }
+        console.log("@@@@@");
+        console.log(clazzList);
+        clazzList= JSON.parse(sessionStorage.getItem('clazzList'));
+        //先往表格写数据
+        let myTable = document.getElementById('myTable');
+        // 先清空表格
+        while(myTable.rows.length>1){
+            myTable.deleteRow(1);
+        }
+        clazzList.forEach(clazz=>{
+            // 开始插入行
+            let rowNum = myTable.rows.length;
+            let newRow = myTable.insertRow(rowNum);
+            let cel0=newRow.insertCell(0);
+            cel0.innerHTML=rowNum;
+
+            let  cel1=newRow.insertCell(1);
+            cel1.innerHTML=
+                '<a onclick="goToInfo('+rowNum+')">'+clazz.clazzName;
+
+            let cel2=newRow.insertCell(2);
+            cel2.innerHTML=clazz.clazzNo;
+
+            let cel3 = newRow.insertCell(3);
+            cel3.innerHTML=clazz.clazzType;
+
+            let cel4 = newRow.insertCell(4);
+            cel4.innerHTML=clazz.clazzTime+'/'+clazz.clazzGrade;
+
+            let cel5 = newRow.insertCell(5);
+            cel5.innerHTML=clazz.clazzSubject;
+
+            let cel6 = newRow.insertCell(6);
+            cel6.innerHTML=clazz.clazzAssessment;
+
+            let cel7 = newRow.insertCell(7);
+            cel7.innerHTML=
+                '<button type="button" class="fontButton1" onclick="clazzEdit('+rowNum+')">修改</button>&nbsp;'+
+                '&nbsp;&nbsp;'+
+                '<button type="button" class="fontButton2" onclick="clazzDel('+rowNum+')">删除</button>'
+                // '<button type="button"  onclick="goToInfo('+rownum+')">&nbsp;详情页面测试&nbsp;</button>';
+        })
+    }
+
+    //添加按钮
+    function  clazzAdd(){
+        console.log("@clazzAdd");
+        location.href='courseAdd.html';
+    }
+    //修改按钮
+    function clazzEdit(index){
+        //选中要修改的图书
+        sessionStorage.setItem('selectedIndex',index-1);
+        console.log("@clazzEdit");
+        location.href='courseEdit.html';
+     }
+    //删除
+    function clazzDel(index){
+        let clazzList=JSON.parse(sessionStorage.getItem('clazzList'));
+        //删除数组数据
+        clazzList.splice(index-1,1);
+        sessionStorage.setItem('clazzList',JSON.stringify(clazzList));
+        func("删除成功！");
+        //重新渲染表格
+        initTable();
+    }
+
+    function goToInfo(index){
+        console.log("进入详情页面跳转函数");
+        sessionStorage.setItem('selectedIndex',index-1);
+        // console.log(index);
+        location.href='courseInfo.html';
+    }
+
+    function func(date){
+        /* 创建div的样式，宽200px,高80px，下面的是css样式居中
+         */
+        var style={
+            background:"#1494e0",
+            position:"absolute",
+
+            zIndex:10,
+            width:"400px",
+            height:"160px",
+            left:"47%",
+            top:"42%",
+            marginLeft:"-100px",
+            marginTop:"-40px",
+            border:"5px solid yellow"
+        }
+        for(var i in style)
+            layer.style[i]=style[i];
+
+        // 当找不到id为layer的控件时
+        if(document.getElementById("layer")==null){
+            // 在body中添加layer控件（layer在上面创建的）
+            document.body.appendChild(layer);
+            // 设置显示类容
+            layer.innerHTML=date;
+            // 将div中文本居中
+            layer.style.textAlign="center";
+            layer.style.lineHeight="150px"; // 作用是调节字体行高与div同高，使其保持水平居中
+            layer.style.fontSize="40px";
+            // 设置3s后去掉弹出窗
+            setTimeout("document.body.removeChild(layer)",1500)
+        }
+    }
+
+    // 下面是计时控件js
+    change();
+    function change(){
+        var today;
+        today = new Date();
+        timeString = today.toLocaleString();
+        document.getElementById("date").innerHTML = timeString;
+        setTimeout("change();", 100);
+    }
+
+</script>
+
+
+</body>
+</html>

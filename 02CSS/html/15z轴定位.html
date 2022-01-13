@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>z轴定位</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            position: relative;
+            width: 500px;
+            margin: auto;
+            border: 1px solid blue;
+        }
+        p{
+            background-color: #d8ffec;
+            border: 1px solid red;
+            width: 400px;
+        }
+        .position{
+            background-color: yellow;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            z-index: 100;
+        }
+        .z1{
+            background-color: green;
+            position: absolute;
+            top: 70px;
+            left: 70px;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body>
+<p>
+    1相对定位和固定定位之间的混合，其允许定位的元
+    件像被相对定位一样动作，直到其滚动到某一阈值
+    点（例如，从顶部10像素），之后变得固定
+</p>
+<p class="position">
+    2相对定位和固定定位之间的混合，其允许定位的元
+    件像被相对定位一样动作，直到其滚动到某一阈值
+    点（例如，从顶部10像素），之后变得固定
+</p>
+<p class="z1">
+    3相对定位和固定定位之间的混合，其允许定位的元
+    件像被相对定位一样动作，直到其滚动到某一阈值
+    点（例如，从顶部10像素），之后变得固定
+</p>
+<p>
+    4相对定位和固定定位之间的混合，其允许定位的元
+    件像被相对定位一样动作，直到其滚动到某一阈值
+    点（例如，从顶部10像素），之后变得固定
+</p>
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格标记</title>
+</head>
+<body>
+<!--表格标记  设置表格格式-->
+<table border="1" width="500" align="center"
+       cellpadding="5" cellspacing="0">
+    <caption>第一个表格</caption>
+<!--    行标记<tr></tr>-->
+    <tread>
+        <tr>
+            <td>年龄</td>
+            <td>姓名</td>
+        </tr>
+    </tread>
+
+    <tr valign="top">
+<!--        列标记 <tb></tb>-->
+        <td height="50">第一行第一列</td>
+        <td>第一行第二列</td>
+    </tr>
+    <tr>
+        <td>第二行第二列</td>
+        <td>第二行第二列</td>
+    </tr>
+</table>
+<br>
+<br>
+
+<!--    第二个表格-->
+    <table border="1" width="500"align="center"
+            cellpadding="5" cellspacing="5">
+        <tr>
+<!--            colspan 是跨行属性 需要删除跨行单元格-->
+            <td colspan="2">11</td>
+<!--            <td>22</td>-->
+            <td rowspan="3">13</td>
+        </tr>
+        <tr>
+            <td>21</td>
+<!--            rowspan 是跨列标记 需要删除跨行顶占单元格-->
+            <td rowspan="2">22</td>
+<!--            <td>23</td>-->
+        </tr>
+        <tr>
+            <td>31</td>
+<!--            <td>32</td>-->
+<!--            <td>33</td>-->
+        </tr>
+
+    </table>
+
+
+
+</body>
+</html>

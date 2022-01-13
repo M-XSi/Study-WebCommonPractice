@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单标记</title>
+</head>
+<body>
+
+<!--表单发送地址-->
+<form id="frmUser" name="frmUser"
+      action="#" method="get">
+<!--    姓名：<input type="text" id="userName" name="userName"-->
+<!--              value="张三三" placeholder="请输入用户名">-->
+<!--&lt;!&ndash;    value和placehoider 二者只出现其一&ndash;&gt;-->
+<!--    <br>-->
+<!--    密码：<input type="password" id="userpwd" name="userpwd">-->
+<!--    <br>-->
+<!--    <input type="submit" value="登录">-->
+
+<!--    表单嵌套划分区域-->
+    <table border="0" width="60%" align="center"
+           cellpadding="10" cellspacing="0">
+        <tr>
+            <td align="cnter">用户注册</td>
+        </tr>
+        <tr>
+            <td>
+<!--                表单区域  内层表单-->
+                <table border="1" width="60%" align="center"
+                       cellpadding="10" cellspacing="0">
+                    <tr>
+                        <td><label for="userName"  >姓名</label></td>
+                        <td>
+                            <input type="text" id="userName" name="userName" required
+                                    placeholder="请输入用户名"  minlength="2" maxlength="5">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="userName" >密码</label></td>
+                        <td>
+                            <input type="password" id="userpwd" name="userpwd" placeholder="请输入密码">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="userName" >重复密码</label></td>
+                        <td>
+                            <input type="password" id="userpwd2" name="userpwd2" placeholder="请确认密码">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="userName" >性别</label></td>
+                        <td>
+                            <input type="radio" name="sex" value="0" checked>男 &nbsp
+                            <input type="radio" name="sex" value="1">女
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="userName" >个人爱好</label></td>
+                        <td>
+                            <input type="checkbox" id="hobby" name="hobby" value="看电影">看电影<br>
+                            <input type="checkbox" id="hobby" name="hobby" value="玩游戏" checked>玩游戏<br>
+                            <input type="checkbox" id="hobby" name="hobby" value="旅游">旅游<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="userName" >班级</label></td>
+                        <td>
+                            <select name="clazz" >
+                                <option value="-1">请选择班级</option>
+                                <option value="rj1901">软件1901</option>
+                                <option value="rj1902">软件1902</option>
+                                <option value="rj1903">软件1903</option>
+                                <option value="rj1904">软件1904</option>
+                                <option value="rj1905">软件1905</option>
+                                <option value="rj1906">软件1906</option>
+                                <option value="rj1907">软件1907</option>
+                                <option value="rj1908">软件1908</option>
+                                <option value="rj1909">软件1909</option>
+                                <option value="rj1910">软件1910</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="userName" >个人简介</label></td>
+                        <td>
+                            <textarea id="userProfile" name="userProfile"
+                                      row="5"cols="50" placeholder="请输入个人简介"></textarea>
+                        </td>
+                    </tr>
+
+
+                </table>
+<!--                -->
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input type="submit" value="保存" onclick="location.href='02文本标记-简历cx.html'">
+                <input type="submit" value="保存" >
+                <input type="reset" value="重置">
+            </td>
+        </tr>
+
+    </table>
+</form>
+
+
+
+
+</body>
+</html>

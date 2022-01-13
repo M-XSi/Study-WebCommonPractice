@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程列表</title>
+    <style>
+        html,body,div{
+            margin: 0;
+            padding: 0;
+        }
+        .div_container{
+            box-sizing: border-box;
+            width: 100%;
+            height: 100vh;
+            margin: 0 auto;
+            border: 1px solid silver;
+        }
+        .div_left{
+            width: 170px;
+            height: 100%;
+            background-color: rgb(109,133,255);
+            float: left;
+        }
+        .div_head{
+            width: calc(100% - 170px);
+            height: 60px;
+            background-color: rgb(191,194,195);
+            float: right;
+        }
+        .div_foot{
+            width: calc(100% - 170px);
+            height: 40px;
+            background-color: rgb(191,194,195);
+            float: right;
+        }
+        .div_content{
+            box-sizing: border-box;
+            width: calc(100% - 170px);
+            height: calc(100% - 60px - 40px);
+            border: 1px solid silver;
+            float: right;
+        }
+        .div_list1{
+            border: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        tbody tr:nth-child(even){
+            background-color: rgb(240,240,240);
+        }
+        th,td{
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="div_container">
+    <div class="div_left"></div>
+    <div class="div_head"></div>
+    <div class="div_content">
+        <div class="div_list1">
+            课程列表&nbsp;&nbsp;&nbsp;
+            <button type="button" onclick="courseadd()">注册</button>
+            <table id="mytable" width="100%" border="1" cellspacing="0" cellpadding="5">
+                <tr>
+                    <td><b>序号</b></td>
+                    <td><b>课程名称</b></td>
+                    <td><b>课程编号</b></td>
+                    <td><b>课程结构</b></td>
+                    <td><b>学时/学分</b></td>
+                    <td><b>适用专业</b></td>
+                    <td><b>考核方式</b></td>
+                    <td><b>操作</b></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="div_foot"></div>
+</div>
+<script>
+    initTable();
+    //初始化表格
+    function initTable() {
+        let courselist = sessionStorage.getItem('courselist');
+        //第一次运行程序，判断courselist是否存在
+        if (!courselist) {
+            //创建一个模拟数据
+            courselist = [
+                {
+                    courseId: 1,
+                    courseName: '<a href="4courseinfo.html">Web程序设计基础</a>',
+                    courseNum: 'JX02L1246',
+                    courseStructure: '专业必修',
+                    courseHour: '48',
+                    courseGoal: '3',
+                    courseMajor: '软件工程',
+                    assMethod: '考查',
+                    courseInfo: '《Web程序设计基础》是软件工程专业的一门专业课程，通过对Web前端三大主流开发技术学习和研究，\n' +
+                        '            让学生理解和掌握HTML、CSS、JavaScript的基本语法，掌握常用的Web页面布局技术，\n' +
+                        '            理解并熟练应用JavaScript常用的对象的属性与方法，熟练地使用DOM技术编写页面交互的客户端程序，\n' +
+                        '            通过项目实践，培养学生开发和设计Web站点的基本操作技能和工作岗位适应能力。'
+                }
+            ]
+            //新建一个存储
+            sessionStorage.setItem('courselist', JSON.stringify(courselist));
+        } else {
+            //再取一次，转成数组对象
+            courselist = JSON.parse(sessionStorage.getItem('courselist'));
+        }
+        //往表格写数据
+        let mytable=document.getElementById('mytable');
+        //先清空表格
+        while (mytable.rows.length>1){
+            mytable.deleteRow(1)
+        }
+        courselist.forEach(course=>{
+            //开始插入行
+            let rownum=mytable.rows.length;
+            let newrow=mytable.insertRow(rownum);
+            let cel0=newrow.insertCell(0);
+            cel0.innerHTML=rownum;
+
+            let cel1=newrow.insertCell(1);
+            cel1.innerHTML=course.courseName;
+
+            let cel2=newrow.insertCell(2);
+            cel2.innerHTML=course.courseNum;
+
+            let cel3=newrow.insertCell(3);
+            cel3.innerHTML=course.courseStructure;
+
+            let cel4=newrow.insertCell(4);
+            cel4.innerHTML=course.courseHour + '/' +course.courseGoal;
+
+            let cel5=newrow.insertCell(5);
+            cel5.innerHTML=course.courseMajor;
+
+            let cel6=newrow.insertCell(6);
+            cel6.innerHTML=course.assMethod;
+
+            let cel7=newrow.insertCell(7);
+            cel7.innerHTML=
+                '<button type="button" onclick="courseedit(' + rownum + ')">修改</button>&nbsp;'+
+                '<button type="button" onclick="coursedel(' + rownum + ')">删除</button>';
+        })
+    }
+    //添加按钮
+    function  courseadd(){
+        location.href='2courseadd.html';
+    }
+    //修改按钮
+    function courseedit(index){
+        //选中要修改的course
+        sessionStorage.setItem('selectedIndex',index-1);
+
+        location.href='3courseedit.html';
+    }
+    //删除
+    function coursedel(index){
+        let courselist=JSON.parse(sessionStorage.getItem('courselist'));
+        //删除数组数据
+        courselist.splice(index-1,1);
+        sessionStorage.setItem('courselist',JSON.stringify(courselist));
+        //重新渲染表格
+        initTable();
+    }
+
+</script>
+</body>
+</html>

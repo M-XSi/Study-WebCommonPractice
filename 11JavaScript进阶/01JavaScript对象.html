@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScrip对象</title>
+</head>
+<body>
+<script>
+    // 对象概念
+    let person={
+        name:"张三",
+        "age":20,
+        job:"班长",
+        sayName(){
+            return name;
+        }
+    }
+
+    // 2对象属性方法的访问
+    console.log(person.age);
+    console.log(person.sayName());
+
+    // 3结构赋值
+    let {name,age,job,sex}=person;
+    console.log(name)
+
+
+    // 4.1字面量创建对象
+    let myBMW={
+        color:"red",
+        "wheels":4,
+        engine:{
+            cylinder:4,
+            size:2.2a
+        }
+    }
+
+
+    // 4.2通过构造函数创建对象
+    function Car(make,model,year)}{
+        this.make=make;
+        this.model=model;
+        this.year=year;
+    }
+
+    let mycar=new Car("Audi","A6L",2021)
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

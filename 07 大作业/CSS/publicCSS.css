@@ -1,0 +1,122 @@
+/*三帧布局、公有CSS*/
+
+/*三帧布局的总格式*/
+*{
+    padding: 0;
+    margin: 0;
+}
+.div_contaitner{
+    margin: auto;
+    width: 100%;
+
+}
+
+/*三帧布局 上部格式*/
+.div_head{
+    width:100%;
+    height: 70px;
+    background-color: #a19b9b;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: xxx-large;
+    /*border:1px solid red;*/
+}
+.div_left{
+    width: 12%;
+    height: calc(100vh);
+    background-color: #5454ee;
+    float:left;
+    /*border: 1px solid red;*/
+}
+.div_content{
+    width: 88%;
+    height: calc(100vh - 70px - 25px );
+    /*border-top: 1px solid red;*/
+    /*border-right: 1px solid red;*/
+    /*border-bottom: 1px solid red;*/
+    float:right;
+    /*align:center;*/
+}
+.div_footer{
+    height: 25px;
+    width: 88%;
+    background-color: gray;
+    /*border:1px solid red;*/
+    float:right;
+}
+
+/*table格式*/
+.tableMain{
+    width:90%;
+    border :0px;
+    /*spacing : 0;*/
+    padding: 0;
+}
+/*text-align:*/
+
+
+.tableContent{
+    width: 100%;
+    /*width="90%" border="1px" cellspacing="0"  cellpadding="5"*/
+    font-family: Arial;
+    font-size: 22px;
+}
+
+
+/*table 斑马线格式*/
+tbody tr:nth-child(even){
+    background-color: #ffffff;
+}
+tbody tr:nth-child(odd){
+    background-color: #f0f0f0;
+}
+
+/*标题部分字体格式*/
+.fontTitle1{
+    font-family: Arial;
+    font-weight: bold;
+    font-size: xxx-large;
+}
+
+.fontContent1{
+    font-family: Arial;
+    font-size: 22px;
+}
+
+
+/*button部分字体*/
+.fontButton1{
+    font-family: Arial;
+    font-size:initial ;
+    background: #5454ee;
+    border: 0;
+    margin: 0;
+    padding: 5px 10px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 3px;
+    cursor: pointer;
+
+}
+
+.fontButton2{
+    font-family: Arial;
+    font-size:initial ;
+    background: #ea6144;
+    border: 0;
+    margin: 0;
+    padding: 5px 10px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 3px;
+    cursor: pointer;
+
+}
+
+
+
+.position1{
+    position: relative;
+    top: 15px;
+    left: 3px;
+}

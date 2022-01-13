@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>表格</title>
+  <!--  2.引入样式库-->
+  <!--    在线样式库-->
+  <!--    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">-->
+  <link rel="stylesheet" href="../static/element-ui/index.css">
+  <link rel="shortcut icon" href="#"/>
+
+</head>
+<body>
+<!--3.创建容器-->
+<div id="app">
+
+  <el-table
+          :data="tableData"
+          style="width: 100%">
+    <!--          数据直接注入现成数组即可  tableData-->
+    <el-table-column
+            prop="date"
+            label="日期"
+            width="180">
+    </el-table-column>
+    <el-table-column
+            prop="name"
+            label="姓名"
+            width="180">
+    </el-table-column>
+    <el-table-column
+            prop="address"
+            label="地址">
+    </el-table-column>
+  </el-table>
+
+
+</div>
+
+<!--1.引人vue库，element ui库-->
+<script src="../static/vue/vue.js"></script>
+<!--引用在线组件库-->
+<!--<script src="https://unpkg.com/element-ui/lib/index.js"></script>-->
+<script src="../static/element-ui/index.js"></script>
+<script>
+  // 4.创建vue容器
+  const app =new Vue ({
+    el:"#app",
+    data:function(){
+      return {
+        tableData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }]
+      }
+    },
+    methods:{
+      changeVal(){
+        this.visible=true;
+      }
+    }
+  })
+
+
+
+
+</script>
+</body>
+</html>

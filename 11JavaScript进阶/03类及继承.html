@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>类及继承</title>
+</head>
+<body>
+
+<script>
+    //通过class关键字定义一个类
+    class Person{
+        // 实例成员：构造函数里面定义的属性方法
+        constructor(name) {
+            this.name=name;
+            this.sayName=function (){
+                return this.name;
+            }
+        }
+        // 原型成员：
+        // 定义在类一级的方法和getter、setter属性，会挂载到原型上
+        locate(){
+            return '这是原型上的方法';
+        }
+
+        // getter、setter方法
+        get nickName(){
+            return this._nickName;
+        }
+        set nickName(newNick){
+            this._nickName=newNick;
+        }
+
+        job='student';
+
+        //类成员：使用static定义的方法属性
+        static work(){
+            console.log('class='+this);
+        }
+
+
+
+    }
+
+    // 实例
+    let person1=new Person('张三');
+    let person2=new Person('李四');
+
+
+    console.log('person1.name='+person1.name);
+    console.log('person2.name='+person2.name);
+
+    console.log('person1.locate='+person1.locate);
+    console.log('person2.locate='+person2.locate);
+    console.log("Person.prototype.locate()="+Person.prototype.locate());
+
+    person1.nickName='张三三';
+    console.log('person1.nickName='+person1.nickName);
+    console.log('person2.nickName='+person2.nickName);
+
+    Person.work();
+
+
+    // 类继承
+    // 父类
+    class Animal{
+        constructor(name) {
+            this.name=name;
+            this.speed=0;
+        }
+        run(speed){
+            this.speed=speed;
+            console.log(`${this.name}跑的速度为 ${this.speed}`);
+            // 不是单引号  使用了字符串模板
+        }
+        stop(){
+            this.speed=0;
+            console.log(`${this.name}停止了`);
+        }
+    }
+    // 子类
+    class Rabbit extends Animal{
+        hide(){
+            console.log(`${this.name}vx藏起来了`);
+        }
+    }
+
+    // 实例
+    let rabbit1=new Rabbit('白兔');
+    let rabbit2=new Rabbit('灰兔');
+
+    rabbit1.run(5);
+    rabbit2.run(3);
+
+    rabbit1.hide();
+
+    rabbit1.stop();
+    rabbit2.stop();
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

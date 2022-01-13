@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加删除元素</title>
+</head>
+<body>
+<div id="div1" align="center">
+    <p>1111111111</p>
+</div>
+
+<p align="center">
+    <button type="button" onclick="f1()">添加</button>
+    <button type="button" onclick="f2()">删除</button>
+</p>
+
+
+<script>
+    function f1(){
+        // 1.得到容器
+        let div1 = document.getElementById('div1');
+        // 2.构造元素节点
+        let p=document.createElement('p');
+        // 3.构造文本节点
+        let textnode = document.createTextNode('新建内容');
+        // 4.把文本内容放入元素节点
+        p.appendChild(textnode);
+        // 5.把元素放进容器
+        div1.appendChild(p);
+    }
+
+
+    function f2(){
+        let  div1 = document.getElementById('div1');
+
+        let list = div1.querySelectorAll();
+        let index=list.length-1;
+    }
+
+
+
+</script>
+
+
+</body>
+</html>

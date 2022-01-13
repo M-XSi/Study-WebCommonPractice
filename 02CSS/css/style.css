@@ -1,0 +1,10 @@
+h1{
+    color: #0000FFFF;
+    background-color: yellow ;
+    border: 1px solid black;
+/*    solid 实线 线条黑色*/
+}
+
+p{
+    color: red;
+}

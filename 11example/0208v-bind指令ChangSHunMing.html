@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button type="button" @click="toUrl1">计算机学院</button>
+    <button type="button" @click="toUrl2">经管学院</button>
+    <br>
+    <img v-bind:src="imgUrl" width="500px" height="250px">
+    <!--v-bind简写方式    -->
+    <br>
+    <img :src="imgUrl" width="500px" height="250px">
+</div>
+<script src="../static/vue/vue.js"></script>
+<script>
+    const app=new Vue({
+        el:'#app',
+        data:function () {
+            return{
+                imgUrl:'http://www.bjtuhbxy.edu.cn/images/dn.jpg'
+            }
+        },
+        methods:{
+            toUrl1(){
+                this.imgUrl='http://www.bjtuhbxy.edu.cn/images/ddhdn.jpg'
+            },
+            toUrl2(){
+                this.imgUrl='http://www.bjtuhbxy.edu.cn/__local/7/14/27/74EA9DD60F7BD337355B1A28523_6223DA6D_5F624.png'
+            }
+        }
+    })
+</script>
+</body>
+</html>

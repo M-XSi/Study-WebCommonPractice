@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>美化六行四列表格</title>
+    <style>
+        div{
+            margin: auto;
+            width: 40%;
+        }
+        body{
+            margin: auto;
+            padding: 0;
+        }
+
+
+        /*设置表头格式*/
+        caption{
+            font-family: 华文隶书;
+            font-size: 30px;
+            margin-top: 100px;
+            margin-bottom: 5px;
+            /*background-color: #5454ee;*/
+        }
+
+
+        /*设置表格内容格式*/
+        table{
+            table-layout: fixed;
+            width:100%;
+            border-collapse: collapse;
+            border: 3px solid black;
+            background-color: yellow;
+
+        }
+
+        /*设置奇偶行颜色样式*/
+        tr:nth-child(odd){
+            background-color: lightgray;
+        }
+        /*odd定义所有表格的奇数行*/
+        tr:nth-child(even){
+            background-color: white;
+        }
+        /*even定义所有表格偶数行*/
+
+
+        /*设置每列宽度*/
+        thead th:nth-child(1){
+            width: 10%;
+        }
+        thead th:nth-child(2){
+            width:30%;
+        }
+        thead th:nth-child(3){
+            width:30%;
+        }
+        thead th:nth-child(4){
+            width:30%;
+        }
+
+        thead,tfoot{
+            border: 1px solid black;
+        }
+
+        /*设置每行文字位置*/
+        tr,td{
+            text-align: center;
+            /*border: 1px solid red;*/
+        }
+
+    </style>
+
+<!--    六行表格 采用样式化布局-->
+</head>
+<body>
+<div align="center">
+    <table>
+        <caption>班级信息统计</caption>
+        <thead>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>身高</th>
+        <th>体重</th>
+        </thead>
+<!--第一行数据-->
+        <tr>
+            <td>1</td>
+            <td>张三</td>
+            <td>175</td>
+            <td>121</td>
+        </tr>
+<!--        第二行-->
+        <tr>
+            <td>2</td>
+            <td>赵六</td>
+            <td>169</td>
+            <td>113</td>
+        </tr>
+<!--        第三行数据-->
+        <tr>
+            <td>3</td>
+            <td>朱四</td>
+            <td>172</td>
+            <td>150</td>
+        </tr>
+<!--        第四行数据-->
+        <tr>
+            <td>4</td>
+            <td>李四</td>
+            <td>176</td>
+            <td>152</td>
+        </tr>
+<!--        第五行数据-->
+        <tr>
+            <td>5</td>
+            <td>王五</td>
+            <td>175</td>
+            <td>170</td>
+        </tr>
+<!--        第六行数据-->
+        <tr>
+            <td>6</td>
+            <td>刘二</td>
+            <td>180</td>
+            <td>173</td>
+        </tr>
+        <tfoot>
+        <th colspan="2">平均值</th>
+        <th>ave</th>
+        <th>ave</th>
+        </tfoot>
+    </table>
+</div>
+</body>
+</html>

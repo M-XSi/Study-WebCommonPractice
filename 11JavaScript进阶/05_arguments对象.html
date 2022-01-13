@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>arguments对象</title>
+</head>
+<body>
+
+
+<script>
+  function showAll() {
+      console.log("arguments.length="+arguments.length);
+      // 使用for循环迭代获取参数值
+      for (let arg of arguments){
+          console.log(arg);
+      }
+      // 通过下标获得参数值
+      console.log(arguments[0]);
+      console.log(arguments[1]);
+
+  }
+  showAll('abc',123,true,{id:1,name:'张三'})
+</script>
+</body>
+</html>

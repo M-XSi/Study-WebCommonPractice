@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加图书</title>
+</head>
+<body>
+<form id=""frmbook method="post">
+    <table border="0" align="center" cellspacing="0" cellpadding="5" width="500ox">
+        <!--    做布局用的，作业中用div-->
+        <tr>
+            <td>
+                图书列表&nbsp;
+                <button type="button" onclick="bookadd()">添加图书列表</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table id="mytable" width="100%"
+                       border="1"
+                       cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>名称</td>
+                        <td>
+                            <input type="text" id="bookName" name="bookName">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>价格</td>
+                        <td>
+                            <input type="text" id="bookPrice" name="bookPrice">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>出版社</td>
+                        <td>
+                            <input type="text" id="publisher" name="publisher">
+                        </td>
+                    </tr>
+                    <!-- 编程的元素最好有id-->
+                </table>
+            </td>
+        </tr>
+        <td align="center">
+            <button type="button" onclick="save()">保存</button>&nbsp;
+            <button type="button" onclick="cancel()">取消</button>
+        </td>
+    </table>
+</form>
+<script>
+    function save(){
+        let book={
+            bookId:parseInt((Math.random()*1000).toString()),
+            bookName: document.getElementById('bookName').value,
+            bookPrice: document.getElementById('bookPrice').value,
+            publisher: document.getElementById('publisher').value
+        }
+        let booklist=JSON.parse(sessionStorage.getItem('booklist'));
+        booklist.push(book);
+        sessionStorage.setItem('booklist',JSON.stringify(booklist));
+        location.href='booklist.html'
+    }
+    function cancel(){
+        location.href='booklist.html';
+    }
+</script>
+</body>
+</html>

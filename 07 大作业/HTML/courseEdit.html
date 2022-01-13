@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程修改</title>
+    <link href="../CSS/publicCSS.css" rel="stylesheet">
+    <link href="../CSS/addCSS.css" rel="stylesheet">
+</head>
+<body>
+<div class="div_contaitner">
+    <div class="div_left">
+        <!--        左侧导航-->
+        <img class="position1" src="../media/1634909389431-ckt-抠图.png" width="100%">
+    </div>
+    <div class="div_head" align="center">
+        <!--        头部-->
+        课程修改
+
+    </div>
+    <div class="div_content" align="center">
+        <!--        内容-->
+        <br>
+        <form id="courseForm" method="post">
+            <input type="hidden" id="clazzId" name="clazzId" >
+            <table  width="90%" border="0px" cellspacing="0"  cellpadding="5">
+                <tr>
+                    <!--                    <td class="fontTitle1">课程注册</td>-->
+                </tr>
+                <tr>
+                    <table  class="fontContent1"  width="90%" border="1px" cellspacing="0"  cellpadding="5">
+                        <tr>
+                            <td class="box1"><label for="clazzName" >课程名称:</label></td>
+                            <td colspan="3" style="padding: 3px">
+                                <input type="text" id="clazzName" name="clazzName" style="width:200px">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="box1" ><label for="clazzNo" >课程编号:</label></td>
+                            <td colspan="3" style="padding: 3px">
+                                <input type="text" id="clazzNo" name="clazzNo" style="width:200px">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="box1"><label for="clazzType1" >课程结构:</label></td>
+                            <td colspan="3" style="padding: 6px">
+
+                                <input type="radio" id="clazzType1" name="clazzType" value="通识必修" checked>
+                                <label for="clazzType1" >通识必修</label>
+                                <input type="radio" id="clazzType2" name="clazzType" value="通识选修" >
+                                <label for="clazzType2" >通识选修</label>
+                                <input type="radio" id="clazzType3" name="clazzType" value="学科基础" >
+                                <label for="clazzType3" >学科基础</label>
+                                <input type="radio" id="clazzType4" name="clazzType" value="专业必修" >
+                                <label for="clazzType4" >专业必修</label>
+                                <input type="radio" id="clazzType5" name="clazzType" value="专业选修" >
+                                <label for="clazzType5" >专业选修</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="box1"><label for="clazzTime" >学时:</label></td>
+                            <td style="padding: 3px"> <input type="text" id="clazzTime" name="clazzTime"></td>
+                            <td class="box1"><label for="clazzGrade" >学分:</label></td>
+                            <td style="padding: 3px"> <input type="text" id="clazzGrade" name="clazzGrade" ></td>
+                        </tr>
+                        <tr>
+                            <td class="box1"><label for="clazzSubject" >适用专业:</label></td>
+                            <td colspan="3" style="padding: 3px">
+                                <select id="clazzSubject" name="clazzSubject">
+                                    <option value="-1">请选择专业</option>
+                                    <option value="软件工程" selected>软件工程</option>
+                                    <option value="物联网工程" >物联网工程</option>
+                                    <option value="计算机科学与技术" >计算机科学与技术</option>
+                                    <option value="电商" >电子商务</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="box1" ><label for="clazzAssessment1" >考核方式:</label></td>
+                            <td colspan="3" style="padding: 6px">
+                                <input type="radio" id="clazzAssessment1" name="clazzAssessment" value="考试" checked>
+                                <label for="clazzAssessment1" >考试&nbsp;</label>&nbsp;
+                                <input type="radio" id="clazzAssessment2" name="clazzAssessment" value="考察">
+                                <label for="clazzAssessment2" >考察&nbsp;</label>
+                                <input type="radio" id="clazzAssessment3" name="clazzAssessment" value="实践">
+                                <label for="clazzAssessment3" >实践&nbsp;</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="box1"><label for="clazzDescribe" >课程简介:</label></td>
+                            <td colspan="3" style="padding: 3px">
+                                <textarea id="clazzDescribe" name="clazzDescribe" style="height:200px;width:500px;word-break:break-all"></textarea>
+                                <!--                                <input type="text"  style="width: 400px;height:100px;word-break: break-all">-->
+                            </td>
+                        </tr>
+                    </table>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="fontButton1" id="addSave" onclick="save()">保存&nbsp;</button>
+                        <!--                    <input type="reset" value="重置">-->
+                        <button type="reset" class="fontButton1" id="reset" onclick="resetting()">&nbsp;重置&nbsp;</button>
+                        <button type="button" class="fontButton1" id="cancel" onclick="abolish()">&nbsp;取消&nbsp;</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="div_footer" align="center">
+        <!--        页脚-->
+        @沧州交通学院-计算机与信息技术学院-软件工程1904班-曾明晖-19852012
+
+    </div>
+</div>
+
+
+<script>
+
+    // 创建一个div
+    var layer=document.createElement("div");
+    // 设置div的id值
+    layer.id="layer";
+    // 上面按钮点击事件
+
+    console.log("数据回填开始");
+    let clazzList=JSON.parse(sessionStorage.getItem('clazzList'));
+    let selectedIndex=sessionStorage.getItem('selectedIndex');
+    let clazz = clazzList[selectedIndex];
+    // 数据回填
+    // document.getElementById('clazz').value=clazz.clazzId;
+    document.getElementById('clazzName').value=clazz.clazzName;
+    document.getElementById('clazzNo').value=clazz.clazzNo;
+    document.getElementById('clazzTime').value=clazz.clazzTime;
+    document.getElementById('clazzGrade').value=clazz.clazzGrade;
+    document.getElementById('clazzSubject').value=clazz.clazzSubject;
+    document.getElementById('clazzDescribe').value=clazz.clazzDescribe;
+    // 课程结构数据回填
+    let objs1 = clazz.clazzType;
+    let objs2 = document.getElementsByName('clazzType');
+    objs2.forEach(item=>{
+        if (item.value==objs1){
+            item.checked=true;
+        }
+        // else{                item.checked=false;}
+    })
+
+    // 考核方式数据回填
+    let objs3 = clazz.clazzAssessment;
+    let objs4 = document.getElementsByName('clazzAssessment');
+    objs4.forEach(item=>{
+        if (item.value==objs3){
+            item.checked=true;
+        }
+    })
+    console.log("数据回填完成");
+
+    function save(){
+        console.log("@editSave");
+
+        // 课程结构（单选）确定勾选值
+        let clazzTypes=document.getElementsByName('clazzType') ;
+        // 取值
+        let clazzTypeValue=0;
+        clazzTypes.forEach(item =>{
+            if(item.checked){
+                clazzTypeValue=item.value;
+            }
+        })
+
+        // 考核方式确定勾选值
+        let clazzAssessments=document.getElementsByName('clazzAssessment');
+        // 取值
+        let clazzAssessmentValue=0;
+        clazzAssessments.forEach(item =>{
+            if (item.checked){
+                clazzAssessmentValue=item.value;
+            }
+        })
+        let clazz={
+
+            clazzId:parseInt((Math.random()*1000).toString()),
+            clazzName: document.getElementById('clazzName').value,
+            clazzNo: document.getElementById('clazzNo').value,
+            clazzType: clazzTypeValue,
+            clazzTime:document.getElementById('clazzTime').value,
+            clazzGrade:document.getElementById('clazzGrade').value,
+            clazzSubject:document.getElementById('clazzSubject').value,
+            clazzAssessment:clazzAssessmentValue,
+            clazzDescribe:document.getElementById('clazzDescribe').value,
+
+        }
+
+        let clazzList=JSON.parse(sessionStorage.getItem('clazzList'));
+        clazzList.splice(selectedIndex,1,clazz);
+        // console.log("t2");
+
+        sessionStorage.setItem('clazzList',JSON.stringify(clazzList));
+        // console.log("save函数中跳转页面前");
+        // console.log(clazzList);
+
+        alert("修改成功");
+        location.href='courseList.html';
+    }
+
+    function resetting(){
+        console.log("@reset");
+
+        alert("重置成功");
+        location.href='courseEdit.html';
+    }
+
+    function abolish(){
+        console.log("@cancel");
+        location.href='courseList.html';
+    }
+
+    function func(date){
+        /* 创建div的样式，宽200px,高80px，下面的是css样式居中
+         */
+        var style={
+            background:"#1494e0",
+            position:"absolute",
+
+            zIndex:10,
+            width:"400px",
+            height:"160px",
+            left:"47%",
+            top:"42%",
+            marginLeft:"-100px",
+            marginTop:"-40px",
+            border:"5px solid yellow"
+        }
+        for(var i in style)
+            layer.style[i]=style[i];
+
+        // 当找不到id为layer的控件时
+        if(document.getElementById("layer")==null){
+            // 在body中添加layer控件（layer在上面创建的）
+            document.body.appendChild(layer);
+            // 设置显示类容
+            layer.innerHTML=date;
+            // 将div中文本居中
+            layer.style.textAlign="center";
+            layer.style.lineHeight="150px"; // 作用是调节字体行高与div同高，使其保持水平居中
+            layer.style.fontSize="40px";
+            // 设置3s后去掉弹出窗
+            setTimeout("document.body.removeChild(layer)",1500)
+        }
+    }
+
+</script>
+
+
+</body>
+</html>

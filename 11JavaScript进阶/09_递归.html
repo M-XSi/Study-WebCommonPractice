@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>递归</title>
+</head>
+<body>
+<script>
+    // 使用递归求一个数的n次方
+    function power(x,n) {
+        if(n==1){
+            return x;
+        }else{
+            return x*power(x,n-1)
+        }
+    }
+    let p=power(2,4);
+    console.log("power(2,4)="+p);
+
+</script>
+
+</body>
+</html>

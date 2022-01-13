@@ -1,0 +1,10 @@
+/*表格中表头格式*/
+.box1{
+    text-align: right;
+    font-family: Arial;
+    font-size: large;
+    height: 40px;
+    width: 110px;
+
+}
+

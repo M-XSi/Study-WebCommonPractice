@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>车辆管理</title>
+    <!--2引入element-ui样式库-->
+    <link rel="stylesheet"
+          href="../static/element-ui/index.css">
+    <link rel="shortcut icon" href="#"/>
+</head>
+<body>
+<!--3创建容器-->
+<div id="app">
+<!--    页面表格主体-->
+    <el-card>
+<!--        表格头部-->
+        <div slot="header">
+            <span>
+                车辆列表
+                <el-button @click="onAdd" plain type="primary" size="mini">
+                    添加车辆
+                </el-button>
+            </span>
+        </div>
+<!--        表格数据 -->
+        <el-table :data="carList" stripe style="width:100%;margin:0 auto" >
+<!--            序号-->
+            <el-table-column
+                    type="index"
+                    prop="id"
+                    label="序号"
+                    width="100px">
+            </el-table-column>
+<!--            车辆名称-->
+            <el-table-column
+                    prop="car_name"
+                    label="车辆名称">
+            </el-table-column>
+<!--            车辆类型-->
+            <el-table-column
+                    prop="car_type"
+                    label="车辆类型"
+                    width="cal(10%vh)">
+                <template slot-scope="scope" align="center">
+                    <span v-if="scope.row.car_type=='1'">轿车</span>
+                    <span v-if="scope.row.car_type=='2'">SUV</span>
+                    <span v-if="scope.row.car_type=='3'">MPV</span>
+                    <span v-if="scope.row.car_type=='4'">客车</span>
+                    <span v-if="scope.row.car_type=='5'">挂车</span>
+
+                </template>
+            </el-table-column>
+<!--            生产厂家-->
+            <el-table-column
+                    prop="manufacturer"
+                    label="生产厂家"
+                    width="140px">
+            </el-table-column>
+<!--            是否报废-->
+            <el-table-column
+                    prop="is_discard"
+                    label="是否报废"
+                    width="90px">
+                <template slot-scope="scope" align="center">
+                    <span v-if="scope.row.is_discard=='0'">否</span>
+                    <span v-if="scope.row.is_discard=='1'">是</span>
+                </template>
+            </el-table-column>
+<!--            操作按钮-->
+            <el-table-column
+                    prop=""
+                    label="操作"
+                    width="220">
+                <template slot-scope="scope">
+                    <el-button size="mini" plain type="primary"
+                               @click="onEdit(scope.$index)">
+                        修改
+                    </el-button>
+                    <el-button size="mini" plain type="danger"
+                               @click="onDelete(scope.$index)">
+                        删除
+                    </el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+    </el-card>
+<!--    添加/删除车辆对话框-->
+    <el-dialog
+            width="60%"
+            :title="dialog.title"
+            :visible.sync="dialog.show"
+            :close-on-click-modal='false'
+            :close-on-press-escape='false'
+            :modal-append-to-body='false'>
+<!--        使用el-form组件进行数据添加和修改-->
+        <el-form
+                ref="myform"
+                :model="mymodel"
+                label-width="150px"
+                style="margin:10px;width:auto;">
+<!--            id 隐藏-->
+            <el-form-item hidden prop='id' label="ID:">
+                <el-input type="string" v-model="mymodel.id"></el-input>
+            </el-form-item>
+<!--            车辆名称输入框-->
+            <el-form-item label="车辆名称：" required >
+                <el-form-item prop='car_name' >
+                    <el-input type="string" v-model="mymodel.car_name" placeholder="请修改车辆名称"></el-input>
+                </el-form-item>
+            </el-form-item>
+<!--            车辆类型下拉框-->
+            <el-form-item prop="car_type" label="车辆类型：">
+                <el-select v-model="mymodel.car_type" placeholder="请选择">
+                    <el-option
+                            v-for="item in type"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+<!--            是否报废 单选框-->
+            <el-form-item prop='is_discard' label="是否报废：" >
+                <!--                使用label表示值-->
+                <template>
+                    <el-radio-group v-model="mymodel.is_discard">
+                        <el-radio :label="0">否</el-radio>
+                        <el-radio :label="1">是</el-radio>
+                    </el-radio-group>
+                </template>
+            </el-form-item>
+<!--            生产厂家输入框-->
+            <el-form-item label="生产厂家：" >
+                <el-form-item prop='manufacturer'>
+                    <el-input type="string" v-model="mymodel.manufacturer" placeholder="请修改车辆生产厂家"></el-input>
+                </el-form-item>
+            </el-form-item>
+<!--            操作按钮-->
+            <el-form-item>
+                <el-button type="primary" @click='onSave("myform")'>保 存</el-button>
+                <el-button @click="dialog.show = false">取 消</el-button>
+            </el-form-item>
+        </el-form>
+    </el-dialog>
+</div>
+
+
+<!--1.1 引入vue-->
+<script src="../static/vue/vue.js"></script>
+<!--1.2 引入element ui-->
+<script src="../static/element-ui/index.js"></script>
+<!--1.3 引入axios-->
+<script src="../static/axios/axios.js"></script>
+<!--1.4 引入自定义的axios配置文件mx-config.js-->
+<script src="../static/mx-config.js"></script>
+
+<script>
+    export default {
+        data () {
+            return {
+                radio: 0
+            };
+        }
+    }
+</script>
+<script>
+//4 定义vue实例
+    const app=new Vue({
+        el:"#app",//挂载到容器
+// 数据
+        data:function () {
+            return{
+
+                //carList保存从后台获得数据
+                carList:[],
+
+                //dialog用于控制对话框的隐藏/显示
+                dialog:{
+                    show:false,
+                    title:'',
+                    option:'add'
+                },
+
+                // mymodel用于与表单数据绑定
+                mymodel:{
+                    id: '',
+                    car_name: '请修改车辆名称',
+                    car_type: '',  //默认数据  0-请修改车辆类型
+                    is_discard: '',//默认数据 0-否  1-是
+                    manufacturer: "请修改生产厂家"
+                },
+
+                //设置一个临时变量，保存哪行数据被选中
+                selectedIndex:-1,
+
+                //type用于表单中的下拉框数据
+                type:[
+                    {
+                        id:'1',
+                        name:'轿车'
+                    },
+                    {
+                        id:'2',
+                        name:'SUV'
+                    },
+                    {
+                        id:'3',
+                        name:'MPV'
+                    },
+                    {
+                        id:'4',
+                        name:'客车'
+                    },
+                    {
+                        id:'5',
+                        name:'挂车'
+                    }
+                ]
+            }
+        },
+//生命周期钩子
+        mounted:function (){
+            //初始化表格
+            this.initTable()
+        },
+// 方法
+        methods:{
+            //初始化表格函数
+            initTable(){
+                //从服务器获得数据
+                axios.get("/car").then(res=>{
+                    this.carList=res.data;
+                })
+                console.log(">>>initTable---初始化完成");
+            },
+
+            //响应添加按钮
+            onAdd(){
+                // 每次点击添加按钮，先清空mymodel的数据
+                console.log(">>>a=onADD-进入函数");
+                this.mymodel={
+                    id: '',
+                    car_name: '',
+                    car_type: '',
+                    is_discard: '0',//默认数据
+                    manufacturer: ""
+                }
+                console.log(">>>onAdd ---mymodel数据清空完成  ==弹出对话框");
+                //弹出对话框
+                this.dialog={
+                    show: true,
+                    title:'添加车辆信息',
+                    option:'add'//标识对话框是添加还是修改
+                }
+            },
+
+            //响应修改按钮
+            onEdit(index){
+                //使用传进来的索引，从carList中获得数据，赋值给mymodel，回填表单
+                console.log(">>>onEdit ---进入修改函数");
+                console.log(index); //index 从0开始   实际行数为index+1
+                this.mymodel={
+                    id:this.carList[index].id,
+                    car_name:this.carList[index].car_name,
+                    car_type:this.carList[index].car_type,
+                    is_discard:this.carList[index].is_discard,
+                    manufacturer:this.carList[index].manufacturer
+                }
+                // console.log(mymodel);
+                //保存选中的行索引
+                this.selectedIndex=index;
+                //弹出对话框
+                this.dialog={
+                    show: true,
+                    title:'修改车辆信息',
+                    option:'edit'//标识对话框是添加还是修改
+                }
+            },
+
+            //响应删除按钮
+            onDelete(index){
+                //删除被选中的数据
+                this.$confirm('确认删除该数据吗?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    axios.delete("/car/" + this.carList[index].id).then(res => {
+                        if (res.status == 200){
+                            this.$message("删除成功");
+                            // 删除table起始下标为1，长度为1的一个值
+                            this.carList.splice(index, 1);
+                        }
+                    });
+                }).catch(() => {
+                    this.$message({
+                        message: "删除失败！",
+                        type: "error"
+                    });
+                });
+            },
+
+            //响应表单保存按钮
+            onSave(form){
+                //把表单数据提交到 后台 ，保存到数据库
+                // 判断是添加还是修改
+                console.log(">>>onSave");
+                if(this.dialog.option=='add'){
+            //添加,调用post方法
+                    console.log(">>>onSave 判断成功");
+                    console.log(this.mymodel);
+                    console.log(this.carList);
+                    axios.post("/car", this.mymodel).then(res => {
+                        //操作成功
+                        console.log("操作成功");
+                        this.$message({
+                            message: "保存成功！",
+                            type: "success"
+                        });
+                        console.log("保存成功；；；更新table");
+                        //更新table
+                        this.carList.push(res.data)
+                        console.log("push");
+                        //关闭对话框
+                        this.dialog={
+                            show: false,
+                            title:'',
+                            option:''
+                        }
+                    })
+                }else if(this.dialog.option=='edit'){
+            //修改,调用put方法
+                    axios.put("/car/"+this.mymodel.id, this.mymodel).then(res => {
+                        //操作成功
+                        this.$message({
+                            message: "保存成功！",
+                            type: "success"
+                        });
+                        //更新table
+                        this.carList.splice(this.selectedIndex,1,res.data)
+                        //关闭对话框
+                        this.dialog={
+                            show: false,
+                            title:'',
+                            option:''
+                        }
+                    })
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

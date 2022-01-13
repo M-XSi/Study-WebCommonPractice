@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on指令</title>
+</head>
+<body>
+<div id="app">
+    <button type="button" v-on:click="doSomething">单机事件</button>
+    <button type="button" v-on:dblclick="doSomething">双击事件</button>
+    <h1>{{content}}</h1>
+
+    <button type="button" v-on:click="changeVal">改变数据</button>
+
+<!--    v-on指令简写方式-->
+    <button type="button" @click='doSomething'>单机事件</button>
+</div>
+<script src="../static/vue/vue.js"></script>
+<script>
+    const app=new Vue({
+        el:"#app",
+        data:function () {
+            return {
+                content:'海滨学院'
+            }
+        },
+        // 各种响应函数。计算函数、都定义在methods属性里面
+        methods:{
+            doSomething:function () {
+                console.log("事件响应");
+            },
+            changeVal:function () {
+                this.content='沧州交通学院'
+            }
+
+        }
+    })
+
+
+</script>
+
+</body>
+</html>

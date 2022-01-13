@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>超链按钮化</title>
+    <style>
+        ul{
+            padding: 0;
+            width: 100%;
+            white-space: nowrap;
+        }
+        li{
+            display: inline;
+        }
+        a{
+            outline: none;
+            text-decoration: none;
+            display: inline-block;
+            width: 19.5%;
+            margin-right: 0.625%;
+            text-align: center;
+            color: black;
+            line-height: 3;
+        }
+        li:last-child a{
+            margin-right: 0;
+        }
+        a:link,a:visited,a:focus{
+            background: #d8ffec;
+        }
+        a:hover{
+            background: orange;
+        }
+        a:active {
+            background: red;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+<ul>
+  <li><a href="#">首页</a></li>
+  <li><a href="#">电影</a></li>
+  <li><a href="#">音乐</a></li>
+  <li><a href="#">游戏</a></li>
+  <li><a href="#">图书</a></li>
+</ul>
+</body>
+</html>

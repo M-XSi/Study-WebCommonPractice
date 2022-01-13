@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-bin指令</title>
+</head>
+<body>
+<div id="app">
+    <button type="button" @click="toUrl1">计算机学院</button>
+    <button type="button" @click="toUrl2">经济管理学院</button>
+    <br>
+    <img v-bind:src="imgUrl" width="500px" height="250px">
+<!--    v-bin简写方式-->
+    <br>
+    <img :src="imgUrl" width="500px" height="250px">
+</div>
+<script src="../static/vue/vue.js"></script>
+<script>
+    const  app=new Vue({
+        el :"#app",
+        data:function(){
+            return {
+                imgUrl:'http://www.bjtuhbxy.edu.cn/images/dn.jpg'
+            }
+        },
+        methods:{
+            toUrl1(){
+                this.imgUrl='http://computer.bjtuhbxy.edu.cn/images/jsjlogo.png'
+            },
+            toUrl2(){
+                this.imgUrl='http://em.bjtuhbxy.edu.cn/images/jglogo.png'
+            }
+        }
+    })
+</script>
+</body>
+</html>

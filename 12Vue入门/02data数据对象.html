@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>data数据对象</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    <h1>{{school.name}}在{{school.address}}</h1>
+<!--    <h1>{{school.name+"在"+school.address}}</h1>-->
+    <ol>
+        <li>{{institute[0]}}</li>
+        <li>{{institute[1]}}</li>
+        <li>{{institute[2]}}</li>
+
+    </ol>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+    const app =new Vue({
+        el:'#app',
+        data:function (){
+            return{
+                message :'你好',
+                school:{
+                    name:'海滨学院',
+                    address:'河北黄骅'
+                },
+                institute:['计科','经管','电子','机械','艺术']
+            }
+        }
+
+    })
+</script>
+
+
+</body>
+</html>

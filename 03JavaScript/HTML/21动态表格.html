@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态表格</title>
+</head>
+<body>
+<table id="mytable" width="500px" align="center" border="1" cellspacing="0"
+            cellpadding="5">
+    <tr>
+        <td>序号</td>
+        <td>姓名</td>
+        <td>性别</td>
+    </tr>
+</table>
+<!--按钮-->
+<p align="center">
+    <button type="button" onclick="f1()">添加</button>
+    <button type="button" onclick="f2()">删除</button>
+</p>
+<script>
+    function f1(){
+        //1. 得到容器
+        let mytable = document.getElementById('mytable');
+        // 2.得到当前表格的长度
+        let rownum = mytable.rows.length;
+        // 3.插入新行，以当前表格长度作为新行的下标·
+        let newrow = mytable.insertRow(rownum);
+        // 4.往新行添加单元格
+        let cel0=newrow.insertCell(0);
+        cel0.innerHTML=rownum;
+
+        let cel1 = newrow.insertCell(1);
+        cel1.innerHTML='张三'+rownum;
+
+        let cel2 = newrow.insertCell(2);
+        cel2.innerHTML='男';
+    }
+    function f2(){
+        let mytable=document.getElementById('mytable');
+        if(mytable.rows.length>1){
+            mytable.deleteRow(mytable.rows.length-1);
+        }
+    }
+</script>
+
+
+</body>
+</html>
